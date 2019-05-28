@@ -1,0 +1,28 @@
+<div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-evenly center" *ngIf="!loading"
+     class="livestreams-wrapper">
+  <mat-card *ngFor="let livestream of livestreams" fxFlex="30" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column"
+            fxLayoutAlign=" center" class="livestream-card">
+    <a
+      [href]="'https://www.twitch.tv/' + livestream?.thumbnail_url.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '').replace('-{width}x{height}.jpg', '')"
+      class="livestream-card-link">
+      <mat-card-content fxFill>
+        <img mat-card-sm-image [src]="formatImageUrl(livestream?.thumbnail_url)" alt="Stream Thumbnail" fxFill>
+      </mat-card-content>
+      <div fxFill fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-card-title class="livestream-card-text">{{livestream?.user_name}}</mat-card-title>
+        <mat-card-subtitle class="livestream-card-text">
+          <mat-icon>person</mat-icon>
+          {{livestream?.viewer_count}}</mat-card-subtitle>
+      </div>
+    </a>
+  </mat-card>
+  <div fxFill fxLayout="row" fxLayoutAlign="center center">
+    <button mat-icon-button (click)="getMoreLivestreams()" matTooltip="Click to load more livestreams"
+            matTooltipPosition="above" matTooltipHideDelay="100">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </div>
+</div>
+<div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="loading-wrapper">
+  <span><mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner></span>
+</div>

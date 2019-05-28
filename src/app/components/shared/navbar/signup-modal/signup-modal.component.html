@@ -1,0 +1,64 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" class="signup-header">
+    <h1 fxFlex="10" mat-dialog-title>Sign up</h1>
+  </div>
+  <mat-horizontal-stepper linear="true" #stepper style="width: 100%">
+    <mat-step [stepControl]="signUpForm">
+      <form [formGroup]="signUpForm" (ngSubmit)="signUpUser()" fxLayout="column" fxFill
+            fxLayoutAlign="center center" fxLayoutGap=".5em">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field class="signup-input">
+          <mat-label>Email</mat-label>
+          <input matInput id="userEmail" type="email" formControlName="userEmail" fxFill
+                 placeholder="Insert an Email">
+        </mat-form-field>
+        <mat-form-field class="signup-input">
+          <mat-label>Username</mat-label>
+          <input matInput id="userName" type="text" formControlName="userName" fxFill
+                 placeholder="Insert an Username">
+        </mat-form-field>
+        <mat-form-field class="signup-input">
+          <mat-label>Password</mat-label>
+          <input matInput id="userPass" type="password" formControlName="userPass" fxFill
+                 placeholder="Insert a Password">
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="signup-input">
+          <button type="submit" mat-flat-button color="warn" (click)="closeDialog()">
+            Cancel
+          </button>
+          <button type="submit" mat-flat-button color="primary" matStepperNext [disabled]="signUpForm.status!=='VALID'">
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5em">
+        <ng-template matStepLabel>Link your LoL Account</ng-template>
+        Link Account
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="signup-input">
+          <button type="submit" mat-flat-button color="warn" (click)="closeDialog()">
+            Cancel
+          </button>
+          <button type="submit" mat-flat-button color="primary" matStepperNext>
+            Next
+          </button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5em">
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="signup-input">
+          <button type="submit" mat-flat-button color="warn" (click)="closeDialog()">
+            Cancel
+          </button>
+          <button type="submit" mat-flat-button color="primary">
+            Submit
+          </button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

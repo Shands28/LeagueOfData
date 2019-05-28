@@ -1,0 +1,39 @@
+<mat-toolbar fxLayout="row" class="navbar">
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70">
+    <button mat-button [routerLink]="['/home']">Home</button>
+    <button mat-button [routerLink]="['/home']">Statistics</button>
+    <button mat-button [routerLink]="['/home']">Chat</button>
+    <button mat-button [routerLink]="['/livestreams']">Livestreams</button>
+  </div>
+  <div *ngIf="logedIn" fxFlex="30" fxLayout="row" fxLayoutAlign="end center">
+    <mat-menu #appMenu="matMenu" xPosition="before">
+      <button mat-menu-item [matMenuTriggerFor]="subMenu">Accounts Saved</button>
+      <button mat-menu-item>
+        <mat-icon>person_outline</mat-icon>
+        Profile
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings_power</mat-icon>
+        Log Out
+      </button>
+    </mat-menu>
+
+    <mat-menu #subMenu="matMenu">
+      <button mat-menu-item>Shands</button>
+      <button mat-menu-item>Schurle3</button>
+      <button mat-menu-item>
+        <mat-icon>add</mat-icon>
+        Add more
+      </button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="appMenu" fxLayout="row" fxLayoutAlign="space-evenly center">
+      <mat-icon>arrow_drop_down</mat-icon>
+      Account
+    </button>
+  </div>
+  <div *ngIf="!logedIn" fxFlex="30" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
+    <button mat-button>Sign In</button>
+    <button mat-flat-button color="primary" (click)="openSignInModal()">Sign up</button>
+  </div>
+</mat-toolbar>
