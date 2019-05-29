@@ -9,3 +9,12 @@
   z-index: 1;
   min-height: 64px;
 }
+
+.navbar-options-menu-logout:hover {
+  background-color: #F44336;
+  color: white;
+}
+
+.navbar-options-menu-logout:hover .navbar-options-menu-logout-icon {
+  color: white;
+}

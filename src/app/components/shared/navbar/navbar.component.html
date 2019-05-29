@@ -1,8 +1,8 @@
 <mat-toolbar fxLayout="row" class="navbar">
   <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70">
     <button mat-button [routerLink]="['/home']">Home</button>
-    <button mat-button [routerLink]="['/home']">Statistics</button>
-    <button mat-button [routerLink]="['/home']">Chat</button>
+    <button mat-button [routerLink]="['/statistics']">Statistics</button>
+    <button mat-button [routerLink]="['/chat']" *ngIf="logedIn">Chat</button>
     <button mat-button [routerLink]="['/livestreams']">Livestreams</button>
   </div>
   <div *ngIf="logedIn" fxFlex="30" fxLayout="row" fxLayoutAlign="end center">
@@ -12,8 +12,8 @@
         <mat-icon>person_outline</mat-icon>
         Profile
       </button>
-      <button mat-menu-item>
-        <mat-icon>settings_power</mat-icon>
+      <button mat-menu-item (click)="logedIn=false" class="navbar-options-menu-logout">
+        <mat-icon class="navbar-options-menu-logout-icon">settings_power</mat-icon>
         Log Out
       </button>
     </mat-menu>
@@ -33,7 +33,7 @@
     </button>
   </div>
   <div *ngIf="!logedIn" fxFlex="30" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">
-    <button mat-button>Sign In</button>
+    <button mat-stroked-button (click)="openLogInModal()">Log In</button>
     <button mat-flat-button color="primary" (click)="openSignInModal()">Sign up</button>
   </div>
 </mat-toolbar>

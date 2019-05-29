@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   livestreams;
 
   searchSummonerForm = new FormGroup({
-    summonerName: new FormControl('', Validators.required),
+    summonerName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[\\d\\sa-zA-Z._]+$')])),
     region: new FormControl('euw1')
   });
 

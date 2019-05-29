@@ -27,6 +27,7 @@ import { SummonerComponent } from './components/public/summoner/summoner.compone
 import { HttpClientModule } from '@angular/common/http';
 import { LivestreamsComponent } from './components/public/livestreams/livestreams.component';
 import { SignupModalComponent } from './components/shared/navbar/signup-modal/signup-modal.component';
+import { LoginModalComponent } from './components/shared/navbar/login-modal/login-modal.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SignupModalComponent } from './components/shared/navbar/signup-modal/si
     HomeComponent,
     SummonerComponent,
     LivestreamsComponent,
-    SignupModalComponent
+    SignupModalComponent,
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,9 @@ import { SignupModalComponent } from './components/shared/navbar/signup-modal/si
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SignupModalComponent]
+  entryComponents: [
+    SignupModalComponent,
+    LoginModalComponent
+  ]
 })
 export class AppModule { }
