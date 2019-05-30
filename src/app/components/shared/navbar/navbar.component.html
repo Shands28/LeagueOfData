@@ -8,7 +8,7 @@
   <div *ngIf="logedIn" fxFlex="30" fxLayout="row" fxLayoutAlign="end center">
     <mat-menu #appMenu="matMenu" xPosition="before">
       <button mat-menu-item [matMenuTriggerFor]="subMenu">Accounts Saved</button>
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="['/profile']">
         <mat-icon>person_outline</mat-icon>
         Profile
       </button>

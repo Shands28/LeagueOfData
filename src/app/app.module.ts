@@ -15,7 +15,7 @@ import {
   MatInputModule, MatListModule,
   MatMenuModule, MatOptionModule, MatProgressSpinnerModule, MatSelectModule,
   MatToolbarModule, MatTooltipModule,
-  MatDialogModule, MatDividerModule, MatStepperModule
+  MatDialogModule, MatDividerModule, MatStepperModule, MatTableModule
 } from '@angular/material';
 
 // Components
@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LivestreamsComponent } from './components/public/livestreams/livestreams.component';
 import { SignupModalComponent } from './components/shared/navbar/signup-modal/signup-modal.component';
 import { LoginModalComponent } from './components/shared/navbar/login-modal/login-modal.component';
+import { UserProfileComponent } from './components/private/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { LoginModalComponent } from './components/shared/navbar/login-modal/logi
     SummonerComponent,
     LivestreamsComponent,
     SignupModalComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { LoginModalComponent } from './components/shared/navbar/login-modal/logi
     MatListModule,
     MatDialogModule,
     MatDividerModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

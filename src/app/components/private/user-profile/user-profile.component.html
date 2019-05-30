@@ -1,0 +1,40 @@
+<div *ngIf="loadingAccounts"></div>
+<div class="user-profile-wrapper" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2em"
+     *ngIf="!loadingAccounts">
+  <div fxLayout="row" fxLayoutAlign="space-evenly" class="user-profile-info-wrapper">
+    <div class="user-profile-info-avatar">
+      <img
+        [src]="'http://ddragon.leagueoflegends.com/cdn/9.11.1/img/profileicon/'+userInfo['savedAccounts'][0]?.profileIconId+'.png'"
+        alt="Summoner Icon" class="user-profile-table-summoner-icon" fxFill>
+    </div>
+    <div><h2>{{userInfo['username']}}</h2></div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center" class="user-profile-table-wrapper">
+    <div *ngIf="userInfo['savedAccounts'].length == 0">
+      <p>No Accounts</p>
+    </div>
+    <mat-table [dataSource]="userInfo['savedAccounts']" class="mat-elevation-z8"
+               *ngIf="userInfo['savedAccounts'].length > 0" fxFill>
+      <ng-container matColumnDef="icon">
+        <mat-header-cell *matHeaderCellDef fxFlex="10"> Icon</mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="10">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/9.11.1/img/profileicon/'+element?.profileIconId+'.png'"
+               alt="Summoner Icon" class="user-profile-table-summoner-icon">
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef fxFlex="45"> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="45">
+          <a [routerLink]="['/summoner/euw/'+element?.name]" class="user-profile-table-name-link">{{element?.name}}</a>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="level">
+        <mat-header-cell *matHeaderCellDef fxFlex="45"> Summoner Level</mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="45"> {{element?.summonerLevel}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
