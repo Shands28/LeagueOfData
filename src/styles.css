@@ -3,3 +3,7 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
+.wip {
+  color: #fcd202;
+  text-shadow: 1px 1px 3px black;
+}

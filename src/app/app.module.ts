@@ -29,6 +29,7 @@ import { LivestreamsComponent } from './components/public/livestreams/livestream
 import { SignupModalComponent } from './components/shared/navbar/signup-modal/signup-modal.component';
 import { LoginModalComponent } from './components/shared/navbar/login-modal/login-modal.component';
 import { UserProfileComponent } from './components/private/user-profile/user-profile.component';
+import { StatisticsComponent } from './components/public/statistics/statistics.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { UserProfileComponent } from './components/private/user-profile/user-pro
     LivestreamsComponent,
     SignupModalComponent,
     LoginModalComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

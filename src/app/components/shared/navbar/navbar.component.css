@@ -18,3 +18,7 @@
 .navbar-options-menu-logout:hover .navbar-options-menu-logout-icon {
   color: white;
 }
+
+.active {
+  border: 1px solid rgba(144,144,144,0.50);
+}

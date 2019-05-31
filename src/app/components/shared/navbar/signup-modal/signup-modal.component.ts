@@ -10,9 +10,14 @@ import {MatDialogRef} from '@angular/material';
 export class SignupModalComponent implements OnInit {
 
   signUpForm = new FormGroup({
-    userEmail: new FormControl('', Validators.required),
+    userEmail: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     userName: new FormControl('', Validators.required),
-    userPass: new FormControl('', Validators.required)
+    userPass: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]))
+  });
+
+  addSummonerForm = new FormGroup({
+    summonerName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[\\d\\sa-zA-Z._]+$')])),
+    region: new FormControl('euw1')
   });
 
   constructor(
@@ -29,6 +34,10 @@ export class SignupModalComponent implements OnInit {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  searchSummoner(){
+
   }
 
 }

@@ -1,7 +1,10 @@
 export interface Summoner {
-  summonerId: string,
-  summonerName: string,
+  profileIconId: number,
+  id: string,
   accountId: string,
+  summonerName: string,
+  summonerLevel: number,
+  region: string
   matchHistory: [],
   rank: []
 }

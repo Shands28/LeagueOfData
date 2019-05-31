@@ -36,13 +36,36 @@
       <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5em">
         <ng-template matStepLabel>Link your LoL Account</ng-template>
         Link Account
-        <div fxLayout="row" fxLayoutAlign="space-between center" class="signup-input">
-          <button type="submit" mat-flat-button color="warn" (click)="closeDialog()">
-            Cancel
-          </button>
-          <button type="submit" mat-flat-button color="primary" matStepperNext>
-            Next
-          </button>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="signup-input" fxFill>
+          <form [formGroup]="addSummonerForm" (ngSubmit)="searchSummoner()" fxLayout="column" fxFill
+                fxLayoutAlign="center center" class="signup-form-summoner-add">
+            <mat-form-field fxFlex="40">
+              <mat-label>Summoner Name</mat-label>
+              <input matInput id="summonerName" type="text" formControlName="summonerName" fxFill
+                     class="summonerName-input"
+                     placeholder="Insert a Summoner Name">
+              <mat-error *ngIf="addSummonerForm.status=='INVALID' && !addSummonerForm.hasError('required')">
+                Please enter a valid summoner name (Unicode letter characters, digits (0-9), spaces, underscores and
+                periods).
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Region</mat-label>
+              <mat-select id="region" formControlName="region" class="region-selector">
+                <mat-option value="euw1">Europe</mat-option>
+                <mat-option value="na1">North America</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+              <button type="submit" mat-flat-button color="warn" (click)="closeDialog()">
+                Cancel
+              </button>
+              <button type="submit" mat-flat-button color="primary" matStepperNext
+                      [disabled]="addSummonerForm.status=='INVALID'">
+                Next
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </mat-step>

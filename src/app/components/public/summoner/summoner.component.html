@@ -1,5 +1,20 @@
-<div class="summoner-wrapper">
-  <p>
-    summoner {{summonerName}} from {{region}} works!
-  </p>
+<div fxLayout="column" fxLayoutAlign="center center" class="summoner-wrapper" *ngIf="!loading">
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFill>
+    <h2>{{summonerStats.summonerName}}</h2>
+    <h3>Level: {{summonerStats.summonerLevel}}</h3>
+    <h4>Region: {{summonerStats.region}}</h4>
+    <div>
+      <button mat-raised-button>Refresh data</button>
+    </div>
+  </div>
+
+  <div *ngIf="summonerStats.matchHistory.length == 0">
+    No matches found
+  </div>
+  <div *ngIf="summonerStats.matchHistory.length > 0">
+    <h1 class="wip"><mat-icon>warning</mat-icon>WORK IN PROGRESS<mat-icon>warning</mat-icon></h1>
+  </div>
+</div>
+<div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="loading-wrapper">
+  <span><mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner></span>
 </div>

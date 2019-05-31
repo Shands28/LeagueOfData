@@ -10,6 +10,7 @@ import {Summoner} from '../../../interfaces/summoner';
 })
 export class SummonerComponent implements OnInit {
 
+  loading: boolean;
   summonerName: string;
   region: string;
   summonerStats: Summoner;
@@ -18,13 +19,16 @@ export class SummonerComponent implements OnInit {
     private route: ActivatedRoute,
     private _summonerService: SummonerService
   ) {
+    this.loading = true;
     this.summonerName = route.snapshot.params['name'];
     this.region = route.snapshot.params['region'];
-    // this._summonerService.getSummonerInfo(this.summonerName, this.region).subscribe( result => {
-    //   if( result['status'] == 200) {
-    //     this.summonerStats = result['body'];
-    //   }
-    // });
+    this._summonerService.getSummonerInfo(this.summonerName, this.region).subscribe( result => {
+      // if( result['status'] == 200) {
+      //   this.summonerStats = result['body'];
+      // }
+      this.summonerStats = result;
+      this.loading = false;
+    });
   }
 
   ngOnInit() {

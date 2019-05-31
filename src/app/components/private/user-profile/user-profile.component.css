@@ -10,9 +10,23 @@
 .user-profile-info-avatar {
   width: 100px;
   height: 100px;
-  border: 1px solid rgba(144,144,144,0.35);
-  border-radius: 5px;
+  border: 2px solid rgba(144,144,144,0.55);
+  border-radius: 8px;
   box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.75);
+}
+.user-profile-info-username {
+  font-size: 1em;
+}
+.user-profile-info-username span {
+  font-weight: normal;
+  font-size: 1em;
+}
+.user-profile-info-email {
+  font-size: 1em;
+}
+.user-profile-info-email span{
+  font-size: .8em;
+  font-weight: normal;
 }
 
 .user-profile-table-wrapper {

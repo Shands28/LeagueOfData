@@ -12,7 +12,7 @@ export class SummonerService {
   ) {  }
 
   getSummonerInfo(summonerName, region){
-    return this.http.get('localhost/summoner' + '?summonerName=' + summonerName + '?region=' + region).pipe(map( (data:any) => {
+    return this.http.get('../assets/pruebasummoner.json').pipe(map( (data:any) => {
       return data;
     }))
   }

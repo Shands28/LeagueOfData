@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private _twitchService: TwitchService
   ) {
-    this._twitchService.getLivestreams().subscribe(result => {
+    this._twitchService.getTopLivestreams().subscribe(result => {
       if (result['status'] == 200) {
         this.livestreams = result['body']['data'];
         this.loadingStreams = false;
