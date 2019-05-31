@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material';
 import {SignupModalComponent} from './signup-modal/signup-modal.component';
 import {LoginModalComponent} from './login-modal/login-modal.component';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
   logedIn: boolean = false;
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _authService: AuthService
   ) {
   }
 
@@ -32,6 +34,9 @@ export class NavbarComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(res => {
+      if(res){
+        this.logedIn = true;
+      }
     });
   }
 
@@ -47,8 +52,16 @@ export class NavbarComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(res => {
-      this.logedIn = true;
+      if(res){
+        this.logedIn = true;
+      }
     });
+  }
+
+  logOut(){
+    this._authService.logout();
+    this.logedIn = this._authService.isLoggedIn;
+    window.location.reload();
   }
 
 }

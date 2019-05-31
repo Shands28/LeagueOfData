@@ -15,11 +15,11 @@
              placeholder="Insert a Password">
     </mat-form-field>
     <div fxLayout="row" fxLayoutAlign="space-between center" class="login-input">
-      <button type="submit" mat-flat-button color="warn" (click)="closeDialog()">
-        Cancel
-      </button>
-      <button type="submit" mat-flat-button color="primary" [disabled]="logInForm.status!=='VALID'">
+      <button type="submit" mat-flat-button color="primary" [disabled]="logInForm.status!=='VALID'" fxFlexOrder="1">
         Log in
+      </button>
+      <button mat-flat-button color="warn" (click)="closeDialog()" fxFlexOrder="0">
+        Cancel
       </button>
     </div>
   </form>

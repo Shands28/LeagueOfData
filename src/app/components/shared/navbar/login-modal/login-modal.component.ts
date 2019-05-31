@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
+import {AuthService} from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -9,8 +10,11 @@ import {MatDialogRef} from '@angular/material';
 })
 export class LoginModalComponent implements OnInit {
 
+  isLoggedIn: boolean;
+
   constructor(
-    public dialogRef: MatDialogRef<LoginModalComponent>
+    public dialogRef: MatDialogRef<LoginModalComponent>,
+    private _authService: AuthService
   ) { }
 
   logInForm = new FormGroup({
@@ -26,7 +30,11 @@ export class LoginModalComponent implements OnInit {
   }
 
   logInUser(){
-
+    this._authService.login().subscribe(() => {
+      if(this._authService.isLoggedIn) {
+        this.dialogRef.close(true);
+      }
+    })
   }
 
 }
