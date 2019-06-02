@@ -24,19 +24,30 @@
        fxLayoutAlign="space-evenly">
     <div fxFlex="60" fxFlexOrder.sm="0" fxFlexOrder.xs="0">
       <h2>News</h2>
-      <h1 class="wip"><mat-icon>warning</mat-icon>WORK IN PROGRESS<mat-icon>warning</mat-icon></h1>
+      <h1 class="wip">
+        <mat-icon>warning</mat-icon>
+        WORK IN PROGRESS
+        <mat-icon>warning</mat-icon>
+      </h1>
     </div>
     <div fxFlex="15" fxFlexOrder.sm="-1" fxFlexOrder.xs="-1" fxLayout="column"
          fxLayout.sm="row" fxLayout.xs="row">
       <div fxFlex="50">
         <h2 class="home-statistics-title">General Statistics</h2>
-        <h1 class="wip"><mat-icon>warning</mat-icon>WORK IN PROGRESS<mat-icon>warning</mat-icon></h1>
+        <h1 class="wip">
+          <mat-icon>warning</mat-icon>
+          WORK IN PROGRESS
+          <mat-icon>warning</mat-icon>
+        </h1>
       </div>
       <div fxFlex="50">
         <h2 class="home-livestreams-title">Top 10 Livestreams</h2>
         <mat-list dense *ngIf="!loadingStreams" class="home-livestreams-list">
           <a mat-list-item *ngFor="let livestream of livestreams"
-             [href]="'https://www.twitch.tv/' + livestream?.user_name.replace(' ', '')" class="home-livestreams-link">
+             [href]="'https://www.twitch.tv/' + livestream['thumbnail_url']
+             .replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '')
+             .replace('-{width}x{height}.jpg', '')"
+             class="home-livestreams-link" target="_blank">
             {{livestream.user_name}} -
             <mat-icon>person</mat-icon>
             {{livestream.viewer_count}}

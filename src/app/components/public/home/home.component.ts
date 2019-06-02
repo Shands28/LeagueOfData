@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
-import {LivestreamsComponent} from '../livestreams/livestreams.component';
 import {TwitchService} from '../../../services/twitch.service';
 
 @Component({
@@ -37,8 +36,12 @@ export class HomeComponent implements OnInit {
   }
 
   searchSummoner() {
-    return this.router.navigate(['/summoner/' + this.searchSummonerForm.controls['region'].value + '/' + this.searchSummonerForm.controls['summonerName'].value]);
+    return this.router.navigate(['/summoner/' + this.searchSummonerForm.controls['region'].value + '/'
+    + HomeComponent.capitalizeFirstLetter(this.searchSummonerForm.controls['summonerName'].value)]);
   }
 
+  static capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 }

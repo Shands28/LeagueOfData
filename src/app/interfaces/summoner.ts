@@ -6,5 +6,5 @@ export interface Summoner {
   summonerLevel: number,
   region: string
   matchHistory: [],
-  rank: []
+  ranks: []
 }

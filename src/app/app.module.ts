@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 // Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -15,7 +16,7 @@ import {
   MatInputModule, MatListModule,
   MatMenuModule, MatOptionModule, MatProgressSpinnerModule, MatSelectModule,
   MatToolbarModule, MatTooltipModule,
-  MatDialogModule, MatDividerModule, MatStepperModule, MatTableModule
+  MatDialogModule, MatDividerModule, MatStepperModule, MatTableModule, MatExpansionModule
 } from '@angular/material';
 
 // Components
@@ -30,6 +31,7 @@ import { SignupModalComponent } from './components/shared/navbar/signup-modal/si
 import { LoginModalComponent } from './components/shared/navbar/login-modal/login-modal.component';
 import { UserProfileComponent } from './components/private/user-profile/user-profile.component';
 import { StatisticsComponent } from './components/public/statistics/statistics.component';
+import { NbspPipe } from './pipes/nbsp.pipe';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { StatisticsComponent } from './components/public/statistics/statistics.c
     SignupModalComponent,
     LoginModalComponent,
     UserProfileComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    NbspPipe
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { StatisticsComponent } from './components/public/statistics/statistics.c
     MatDialogModule,
     MatDividerModule,
     MatStepperModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent],

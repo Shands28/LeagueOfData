@@ -2,6 +2,71 @@
   width: 100%;
   margin-top: 7em;
 }
+
 .loading-wrapper {
   margin-top: 10em;
+}
+
+.summoner-rank-info-wrapper {
+  width: 70%;
+}
+
+.summoner-info-match-history-wrapper {
+  width: 80%;
+}
+
+.summoner-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 3px;
+  border: 3px solid rgba(144, 144, 144, 0.75);
+}
+
+.summoner-info-rank-emblem {
+  width: 112px;
+  height: 128px;
+}
+
+.summoner-info-rank-winrate {
+  font-weight: bold;
+}
+
+.summoner-info-level {
+  color: mediumblue;
+}
+
+.summoner-info-rank-winrate span:first-of-type {
+  color: darkgreen;
+}
+
+.summoner-info-rank-winrate span:last-of-type {
+  color: darkred;
+}
+
+.summoner-info-match-history-buttons {
+  margin-top: .5em;
+}
+
+mat-expansion-panel .summoner-info-match-history-win {
+  background-color: rgba(75, 255, 100, .3);
+  transition: background-color .2s;
+}
+
+mat-expansion-panel .summoner-info-match-history-lose {
+  background-color: palevioletred;
+  transition: background-color .2s;
+}
+
+.summoner-info-match-history-champion-avatar {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.summoner-info-match-history-header {
+  font-weight: bold;
+}
+
+.summoner-info-match-history-items{
+  width: 45px;
+  border-radius: 5px;
 }

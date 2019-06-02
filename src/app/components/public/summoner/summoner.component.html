@@ -1,18 +1,106 @@
-<div fxLayout="column" fxLayoutAlign="center center" class="summoner-wrapper" *ngIf="!loading">
+<div fxLayout="column" fxLayoutAlign="center center" class="summoner-wrapper" *ngIf="!loading" fxLayoutGap="1em">
   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFill>
+    <img [src]="'./assets/img/profileicon/'+summonerStats.profileIconId+'.png'" alt="Summoner Icon"
+         class="summoner-icon">
     <h2>{{summonerStats.summonerName}}</h2>
-    <h3>Level: {{summonerStats.summonerLevel}}</h3>
-    <h4>Region: {{summonerStats.region}}</h4>
-    <div>
+    <h3>Level: <span class="summoner-info-level">{{summonerStats.summonerLevel}}</span></h3>
+    <h4>Region: {{summonerStats.region | uppercase}}</h4>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".7em">
       <button mat-raised-button>Refresh data</button>
+      <button mat-raised-button>Take over</button>
     </div>
   </div>
-
+  <div *ngIf="summonerStats.ranks.length == 0">
+    No ranks found
+  </div>
+  <div *ngIf="summonerStats.ranks.length > 0" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2em"
+       class="summoner-rank-info-wrapper">
+    <div *ngFor="let rank of summonerStats.ranks" fxLayout="column" fxLayoutAlign="center center">
+      <h2>{{rank['queueType']}}</h2>
+      <img [src]="'./assets/img/emblems/Emblem_'+rank['tier']+'.png'" [alt]="'Emblem for ' + rank['tier']"
+           class="summoner-info-rank-emblem">
+      <h3>{{rank['tier']}} {{rank['rank']}}</h3>
+      <p class="summoner-info-rank-winrate"><span>{{rank['wins']}}</span> / <span>{{rank['losses']}}</span></p>
+    </div>
+  </div>
   <div *ngIf="summonerStats.matchHistory.length == 0">
     No matches found
   </div>
-  <div *ngIf="summonerStats.matchHistory.length > 0">
-    <h1 class="wip"><mat-icon>warning</mat-icon>WORK IN PROGRESS<mat-icon>warning</mat-icon></h1>
+  <div *ngIf="summonerStats.matchHistory.length > 0" class="summoner-info-match-history-wrapper" fxLayout="row"
+       fxLayoutAlign="space-evenly center">
+    <div fxFlex>
+      Stats
+      <mat-list role="list" *ngFor="let champion of getChampionsPlayed(matchesInfo).slice(0, 10)">
+        <mat-list-item role="listitem">
+          <img matListAvatar src="../assets/img/champion/{{champion['name'] | nbsp}}.png"
+               [alt]="champion['name'] + ' Avatar'">
+          <p matLine>{{champion['name']}}: {{champion['winRate'] | number:'.0-0'}}%</p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+      <mat-accordion fxFill>
+        <mat-expansion-panel
+          *ngFor="let match of matchesInfo.slice(beginIndex, endIndex);">
+          <mat-expansion-panel-header [ngClass]="{
+          'summoner-info-match-history-win': match['participants'][this.participantId - 1]['stats']['win'],
+          'summoner-info-match-history-lose': !match['participants'][this.participantId - 1]['stats']['win']
+          }">
+            <mat-panel-title>
+              {{match['gameCreation'] | date:'d/M, HH:mm'}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <div>
+                {{match['gameDuration'] * 1000 | date:'mm:ss'}}
+              </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <h3>{{checkWin(match) ? 'WIN' : 'LOSE'}}</h3>
+          <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap=".8em">
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="1em" fxFill>
+              <img
+                src="../assets/img/champion/{{getChampionName(match['participants'][participantId - 1]['championId'])}}.png"
+                alt="{{getChampionName(match['participants'][participantId - 1]['championId'])}} Avatar"
+                class="summoner-info-match-history-champion-avatar">
+              <span>{{getChampionName(match['participants'][participantId - 1]['championId'])}}</span>
+              <span>
+                <span class="summoner-info-match-history-header"> Score: </span>
+                {{match['participants'][participantId - 1]['stats']['kills']}}
+                / {{match['participants'][participantId - 1]['stats']['deaths']}}
+                / {{match['participants'][participantId - 1]['stats']['assists']}}
+              </span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="1em" fxFill>
+              <div *ngFor="let i of [0,1,2,3,4,5,6]">
+                <img src="../assets/img/item/{{match['participants'][participantId - 1]['stats']['item'+i]}}.png"
+                     alt="Item {{i}}" *ngIf="match['participants'][participantId - 1]['stats']['item'+i] != 0"
+                     class="summoner-info-match-history-items">
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="1em" fxFill>
+              <span>
+                <span class="summoner-info-match-history-header"> Total Damage Dealt: </span>
+                {{match['participants'][participantId - 1]['stats']['totalDamageDealt']}}
+              </span>
+              <span>
+                <span class="summoner-info-match-history-header"> Total Minions Killed: </span>
+                {{match['participants'][participantId - 1]['stats']['totalMinionsKilled']}}
+              </span>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div fxFill fxLayout="row" fxLayoutAlign="space-between center" class="summoner-info-match-history-buttons">
+        <button mat-raised-button color="primary" (click)="lastPageMatches()" [disabled]="beginIndex==0">
+          Last page
+        </button>
+        <button mat-raised-button color="primary" (click)="nextPageMatches()"
+                [disabled]="endIndex>=summonerStats.matchHistory.length">
+          Next page
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 <div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="loading-wrapper">
