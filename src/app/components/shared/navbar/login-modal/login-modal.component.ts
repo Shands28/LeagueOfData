@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
 import {AuthService} from '../../../../services/auth.service';
@@ -10,17 +10,19 @@ import {AuthService} from '../../../../services/auth.service';
 })
 export class LoginModalComponent implements OnInit {
 
-  isLoggedIn: boolean;
-
-  constructor(
-    public dialogRef: MatDialogRef<LoginModalComponent>,
-    private _authService: AuthService
-  ) { }
+  isLoggedIn: boolean = false;
 
   logInForm = new FormGroup({
     userName: new FormControl('', Validators.required),
     userPass: new FormControl('', Validators.required)
   });
+
+  constructor(
+    public dialogRef: MatDialogRef<LoginModalComponent>,
+    private _authService: AuthService
+  ) {
+  }
+
 
   ngOnInit() {
   }
@@ -29,12 +31,12 @@ export class LoginModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  logInUser(){
+  logInUser() {
     this._authService.login().subscribe(() => {
-      if(this._authService.isLoggedIn) {
+      if (this._authService.isLoggedIn) {
         this.dialogRef.close(true);
       }
-    })
+    });
   }
 
 }

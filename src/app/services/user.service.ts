@@ -13,6 +13,7 @@ export class UserService {
 
   getUserInfo(){
     return this.http.get('../assets/pruebauser.json').pipe(map( (data:any) => {
+      localStorage.setItem("JavierArenasLlorente", "Juasjuas");
       return data;
     }));
   }

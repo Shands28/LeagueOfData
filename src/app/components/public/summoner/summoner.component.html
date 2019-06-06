@@ -4,8 +4,11 @@
          class="summoner-icon">
     <h2>{{summonerStats.summonerName}}</h2>
     <h3>Level: <span class="summoner-info-level">{{summonerStats.summonerLevel}}</span></h3>
-    <h4>Region: {{summonerStats.region | uppercase}}</h4>
+    <h4>Region: {{summonerStats.region == 'euw1' ? 'EUW' : 'NA'}}</h4>
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".7em">
+      <button mat-icon-button>
+        <mat-icon>{{summonerStats['savedAccounts'] ? 'star' : 'star_border'}}</mat-icon>
+      </button>
       <button mat-raised-button>Refresh data</button>
       <button mat-raised-button>Take over</button>
     </div>
@@ -15,8 +18,8 @@
   </div>
   <div *ngIf="summonerStats.ranks.length > 0" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2em"
        class="summoner-rank-info-wrapper">
-    <div *ngFor="let rank of summonerStats.ranks" fxLayout="column" fxLayoutAlign="center center">
-      <h2>{{rank['queueType']}}</h2>
+    <div *ngFor="let rank of summonerStats.ranks" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5em">
+      <h2>{{rank['queueType'].replace('_', ' ').replace('_', ' ')}}</h2>
       <img [src]="'./assets/img/emblems/Emblem_'+rank['tier']+'.png'" [alt]="'Emblem for ' + rank['tier']"
            class="summoner-info-rank-emblem">
       <h3>{{rank['tier']}} {{rank['rank']}}</h3>
@@ -27,67 +30,143 @@
     No matches found
   </div>
   <div *ngIf="summonerStats.matchHistory.length > 0" class="summoner-info-match-history-wrapper" fxLayout="row"
-       fxLayoutAlign="space-evenly center">
+       fxLayoutAlign="space-evenly start">
     <div fxFlex>
       Stats
-      <mat-list role="list" *ngFor="let champion of getChampionsPlayed(matchesInfo).slice(0, 10)">
+      <mat-list role="list" *ngFor="let champion of getChampionsPlayed().slice(0, 10)">
         <mat-list-item role="listitem">
           <img matListAvatar src="../assets/img/champion/{{champion['name'] | nbsp}}.png"
                [alt]="champion['name'] + ' Avatar'">
-          <p matLine>{{champion['name']}}: {{champion['winRate'] | number:'.0-0'}}%</p>
+          <p matLine class="summoner-info-stats-winrate">
+            <span>{{champion['name']}}</span>:
+            <span>{{champion['winRate']['wins']}} </span> /
+            <span>{{champion['winRate']['total']}}</span> /
+            {{champion['winRate']['wins'] / champion['winRate']['total'] | percent}}</p>
         </mat-list-item>
       </mat-list>
     </div>
     <div fxFlex fxLayout="column" fxLayoutAlign="start center">
       <mat-accordion fxFill>
         <mat-expansion-panel
-          *ngFor="let match of matchesInfo.slice(beginIndex, endIndex);">
+          *ngFor="let match of matchesInfo.slice(beginIndex, endIndex); let i = index">
           <mat-expansion-panel-header [ngClass]="{
-          'summoner-info-match-history-win': match['participants'][this.participantId - 1]['stats']['win'],
-          'summoner-info-match-history-lose': !match['participants'][this.participantId - 1]['stats']['win']
-          }">
-            <mat-panel-title>
-              {{match['gameCreation'] | date:'d/M, HH:mm'}}
+          'summoner-info-match-history-win': match['participants'][participantIds[i] - 1]['stats']['win'],
+          'summoner-info-match-history-lose': !match['participants'][participantIds[i] - 1]['stats']['win']
+          }" #matchHeader>
+            <mat-panel-title fxLayout="column" fxLayoutAlign=" center" fxFlex class="summoner-info-match-history-title">
+              <div>{{match['gameCreation'] | date:'d/M, HH:mm'}}</div>
+              <div>{{getQueueName(match['queueId'])}}</div>
             </mat-panel-title>
-            <mat-panel-description>
+            <mat-panel-description fxLayout="row" fxLayoutAlign="space-between center"
+                                   class="summoner-info-match-history-title">
+              <div>
+                <img
+                  src="../assets/img/champion/{{getChampionName(match['participants'][participantIds[i] - 1]['championId'])}}.png"
+                  alt="{{getChampionName(match['participants'][participantIds[i] - 1]['championId'])}} Avatar"
+                  style="width: 35px; border-radius: 50%"
+                  matTooltip="{{getChampionName(match['participants'][participantIds[i] - 1]['championId'])}}">
+              </div>
+              <div fxLayout="row" fxLayoutGap="2px">
+                <div>
+                  <img
+                    src="../assets/img/spell/{{getSummonerSpellName(match['participants'][participantIds[i]-1]['spell1Id'])}}"
+                    alt="{{getSummonerSpellName(match['participants'][participantIds[i]-1]['spell1Id'])}}"
+                    style="width: 25px">
+                </div>
+                <div>
+                  <img
+                    src="../assets/img/spell/{{getSummonerSpellName(match['participants'][participantIds[i]-1]['spell2Id'])}}"
+                    alt="{{getSummonerSpellName(match['participants'][participantIds[i]-1]['spell2Id'])}}"
+                    style="width: 25px">
+                </div>
+              </div>
+              <div>
+                {{match['participants'][participantIds[i] - 1]['stats']['win'] ? 'Victory' : 'Defeat'}}
+              </div>
+              <div>
+                Level: {{match['participants'][participantIds[i] - 1]['stats']['champLevel']}}
+              </div>
               <div>
                 {{match['gameDuration'] * 1000 | date:'mm:ss'}}
               </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
-
-          <h3>{{checkWin(match) ? 'WIN' : 'LOSE'}}</h3>
-          <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap=".8em">
-            <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="1em" fxFill>
-              <img
-                src="../assets/img/champion/{{getChampionName(match['participants'][participantId - 1]['championId'])}}.png"
-                alt="{{getChampionName(match['participants'][participantId - 1]['championId'])}} Avatar"
-                class="summoner-info-match-history-champion-avatar">
-              <span>{{getChampionName(match['participants'][participantId - 1]['championId'])}}</span>
-              <span>
-                <span class="summoner-info-match-history-header"> Score: </span>
-                {{match['participants'][participantId - 1]['stats']['kills']}}
-                / {{match['participants'][participantId - 1]['stats']['deaths']}}
-                / {{match['participants'][participantId - 1]['stats']['assists']}}
-              </span>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="1em" fxFill>
-              <div *ngFor="let i of [0,1,2,3,4,5,6]">
-                <img src="../assets/img/item/{{match['participants'][participantId - 1]['stats']['item'+i]}}.png"
-                     alt="Item {{i}}" *ngIf="match['participants'][participantId - 1]['stats']['item'+i] != 0"
-                     class="summoner-info-match-history-items">
-              </div>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="1em" fxFill>
-              <span>
-                <span class="summoner-info-match-history-header"> Total Damage Dealt: </span>
-                {{match['participants'][participantId - 1]['stats']['totalDamageDealt']}}
-              </span>
-              <span>
-                <span class="summoner-info-match-history-header"> Total Minions Killed: </span>
-                {{match['participants'][participantId - 1]['stats']['totalMinionsKilled']}}
-              </span>
-            </div>
+          <div *ngIf="matchHeader.panel.expanded" fxFill>
+            <table class="summoner-info-match-table" fxLayout="column">
+              <thead fxFill>
+              <tr fxLayoutAlign="space-between">
+                <th fxFlex></th>
+                <th fxFlex="30">Summoner Name</th>
+                <th fxFlex="10">Division</th>
+                <th fxFlex="20">Champion</th>
+                <th fxFlex="15">KDA</th>
+                <th fxFlex="10">Damage</th>
+                <th fxFlex="10">Heal</th>
+              </tr>
+              </thead>
+              <tbody fxFill>
+              <tr *ngFor="let participant of match['participantIdentities'].slice(0,5); let i = index" fxFill
+                  fxLayoutAlign="space-between" class="summoner-info-match-history-blueTeam">
+                <td fxFlex fxLayoutAlign="center center">
+                  <img src="./assets/img/profileicon/{{participant['player']['profileIcon']}}.png"
+                       alt="{{participant['player']['summonerName']}}'s avatar"
+                       class="summoner-info-match-summoner-icon">
+                </td>
+                <td fxFlex="30">{{participant['player']['summonerName']}}</td>
+                <td
+                  fxFlex="10">{{match['participants'][i]['highestAchievedSeasonTier'] ? match['participants'][i]['highestAchievedSeasonTier'] : 'None'}}</td>
+                <td fxFlex="20">{{getChampionName(match['participants'][i]['championId'])}}</td>
+                <td fxFlex="15">
+                  {{match['participants'][i]['stats']['kills']}}
+                  / {{match['participants'][i]['stats']['deaths']}}
+                  / {{match['participants'][i]['stats']['assists']}}
+                </td>
+                <td fxFlex="10">{{match['participants'][i]['stats']['totalDamageDealt']}}
+                <td fxFlex="10">{{match['participants'][i]['stats']['totalHeal']}}</td>
+              </tr>
+              <tr fxLayout="row" fxLayoutAlign="center" class="summoner-info-match-history-statsrow" fxFill>
+                <td colspan="4" fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="50">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFill>
+                    <div>{{match['teams'][1]['win'] == 'Win' ? 'Win' : 'Lose'}}</div>
+                    <div *ngIf="!match['teams'][0]['vilemawKills']">Baron: {{match['teams'][1]['baronKills']}}</div>
+                    <div *ngIf="!match['teams'][0]['vilemawKills']">Dragon: {{match['teams'][1]['dragonKills']}}</div>
+                    <div *ngIf="!match['teams'][0]['vilemawKills']">
+                      Herald: {{match['teams'][1]['riftHeraldKills']}}</div>
+                    <div *ngIf="match['teams'][0]['vilemawKills']">Vilemaw: {{match['teams'][1]['vilemawKills']}}</div>
+                  </div>
+                </td>
+                <td colspan="4" fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="50">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFill>
+                    <div *ngIf="match['teams'][0]['vilemawKills']">Vilemaw: {{match['teams'][0]['vilemawKills']}}</div>
+                    <div *ngIf="!match['teams'][0]['vilemawKills']">
+                      Herald: {{match['teams'][0]['riftHeraldKills']}}</div>
+                    <div *ngIf="!match['teams'][0]['vilemawKills']">Dragon: {{match['teams'][0]['dragonKills']}}</div>
+                    <div *ngIf="!match['teams'][0]['vilemawKills']">Baron: {{match['teams'][0]['baronKills']}}</div>
+                    <div>{{match['teams'][0]['win'] == 'Win' ? 'Win' : 'Lose'}}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngFor="let participant of match['participantIdentities'].slice(5); let i = index" fxFill
+                  fxLayoutAlign="space-between" class="summoner-info-match-history-redTeam">
+                <td fxFlex fxLayoutAlign="center center">
+                  <img src="./assets/img/profileicon/{{participant['player']['profileIcon']}}.png"
+                       alt="{{participant['player']['summonerName']}}'s avatar"
+                       class="summoner-info-match-summoner-icon">
+                </td>
+                <td fxFlex="30">{{participant['player']['summonerName']}}</td>
+                <td
+                  fxFlex="10">{{match['participants'][i]['highestAchievedSeasonTier'] ? match['participants'][i]['highestAchievedSeasonTier'] : 'None'}}</td>
+                <td fxFlex="20">{{getChampionName(match['participants'][i + 4]['championId'])}}</td>
+                <td fxFlex="15">
+                  {{match['participants'][i + 4]['stats']['kills']}}
+                  / {{match['participants'][i + 4]['stats']['deaths']}}
+                  / {{match['participants'][i + 4]['stats']['assists']}}
+                </td>
+                <td fxFlex="10">{{match['participants'][i + 4]['stats']['totalDamageDealt']}}</td>
+                <td fxFlex="10">{{match['participants'][i + 4]['stats']['totalHeal']}}</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </mat-expansion-panel>
       </mat-accordion>

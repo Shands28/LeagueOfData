@@ -12,9 +12,10 @@
       </mat-card-content>
       <div fxFill fxLayout="row" fxLayoutAlign="space-between center">
         <mat-card-title class="livestream-card-text">{{livestream?.user_name}}</mat-card-title>
-        <mat-card-subtitle class="livestream-card-text">
-          <mat-icon>person</mat-icon>
-          {{livestream?.viewer_count}}</mat-card-subtitle>
+        <mat-card-subtitle class="livestream-card-text" fxLayoutAlign="center center">
+          <mat-icon matTooltip="Viewers" matTooltipPosition="above">person</mat-icon>
+          <div>{{livestream?.viewer_count}}</div>
+        </mat-card-subtitle>
       </div>
     </a>
   </mat-card>

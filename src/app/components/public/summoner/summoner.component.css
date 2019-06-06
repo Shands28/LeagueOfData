@@ -17,7 +17,6 @@
 
 .summoner-icon {
   width: 120px;
-  height: 120px;
   border-radius: 3px;
   border: 3px solid rgba(144, 144, 144, 0.75);
 }
@@ -40,6 +39,18 @@
 }
 
 .summoner-info-rank-winrate span:last-of-type {
+  color: darkred;
+}
+
+.summoner-info-stats-winrate span:first-of-type {
+  font-weight: bold;
+}
+
+.summoner-info-stats-winrate span:nth-of-type(2) {
+  color: darkgreen;
+}
+
+.summoner-info-stats-winrate span:last-of-type {
   color: darkred;
 }
 
@@ -66,7 +77,39 @@ mat-expansion-panel .summoner-info-match-history-lose {
   font-weight: bold;
 }
 
-.summoner-info-match-history-items{
+.summoner-info-match-history-items {
   width: 45px;
   border-radius: 5px;
+}
+
+.summoner-info-match-history-title {
+  font-weight: bold;
+}
+
+.summoner-info-match-table {
+  width: 100%;
+  text-align: center;
+}
+
+.summoner-info-match-table td{
+  border: 1px solid rgba(255,255,255,.35);
+}
+
+.summoner-info-match-summoner-icon {
+  width: 20px
+}
+
+.summoner-info-match-history-statsrow {
+  background: #6495ed;
+  background: -moz-linear-gradient(left,  #6495ed 0%, #db7093 100%);
+  background: -webkit-linear-gradient(left,  #6495ed 0%,#db7093 100%);
+  background: linear-gradient(to right,  #6495ed 0%,#db7093 100%);
+}
+
+.summoner-info-match-history-redTeam {
+  background: palevioletred;
+}
+
+.summoner-info-match-history-blueTeam {
+  background: cornflowerblue;
 }

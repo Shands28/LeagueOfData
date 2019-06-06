@@ -24,9 +24,21 @@ export class SummonerService {
     }));
   }
 
-  getChampionsIcons(){
-    return this.http.get('https://ddragon.leagueoflegends.com/cdn/9.11.1/data/en_US/champion.json').pipe(map( (data:any) => {
+  getChampionsIcons() {
+    return this.http.get('https://ddragon.leagueoflegends.com/cdn/9.11.1/data/en_US/champion.json').pipe(map((data: any) => {
       return data;
-    }))
+    }));
+  }
+
+  getSummonerSpells() {
+    return this.http.get('https://ddragon.leagueoflegends.com/cdn/9.11.1/data/en_US/summoner.json').pipe(map((data => {
+      return data;
+    })));
+  }
+
+  getQueues(){
+    return this.http.get('../../assets/json/queues.json').pipe(map((data => {
+      return data;
+    })));
   }
 }

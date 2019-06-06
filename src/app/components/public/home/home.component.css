@@ -3,25 +3,6 @@
   margin-top: 7em;
 }
 
-/*.summonerName-input {*/
-/*  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.35);*/
-/*  -moz-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.35);*/
-/*  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.35);*/
-/*}*/
-
-/*input:focus {*/
-/*  outline: none;*/
-/*  -webkit-box-shadow: 0 0 10px 2px rgba(0, 144, 255, 0.45);*/
-/*  -moz-box-shadow: 0 0 10px 2px rgba(0, 144, 255, 0.45);*/
-/*  box-shadow: 0 0 10px 2px rgba(0, 144, 255, 0.45);*/
-/*}*/
-
-/*.summonerName-input {*/
-/*  border: 1px solid #00000044;*/
-/*  border-radius: 5px;*/
-/*  padding: 10px;*/
-/*}*/
-
 .info-wrapper {
   margin-top: 5em;
 }
@@ -36,8 +17,13 @@
   text-align: center;
 }
 
+.home-livestreams-list.mat-list.mat-list-base.ng-star-inserted{
+  padding-top: 0;
+}
+
 .home-livestreams-list {
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 .home-livestreams-link {
@@ -45,5 +31,7 @@
 }
 
 .home-livestreams-link:hover {
-  color: midnightblue;
+  color: white;
+  background-color: #4B357D;
+  border-radius: 5px;
 }

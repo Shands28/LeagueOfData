@@ -18,10 +18,14 @@ export class SummonerComponent implements OnInit {
   beginIndex: number = 0;
   endIndex: number = 10;
 
-  participantId: number;
+  participantIds: Array<number> = [];
   matchesInfo: Array<any>;
 
   champions;
+  summonerSpells;
+  queues;
+
+  loadingMatch: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,11 +43,16 @@ export class SummonerComponent implements OnInit {
     this._summonerService.getSummonerMatchesInfo(this.summonerName, this.region).subscribe(result => {
       this.getParticipantId(result);
       this.matchesInfo = result;
-      this.loading = false;
     });
     this._summonerService.getChampionsIcons().subscribe(res => {
       this.champions = res['data'];
     });
+    this._summonerService.getSummonerSpells().subscribe( res => {
+      this.summonerSpells = res['data'];
+    });
+    this._summonerService.getQueues().subscribe( res => {
+      this.queues = res;
+    })
   }
 
   ngOnInit() {
@@ -59,11 +68,11 @@ export class SummonerComponent implements OnInit {
     this.endIndex -= 10;
   }
 
-  getChampionsPlayed(matches) {
+  getChampionsPlayed() {
     let array = [];
-    for (let match of matches) {
-      for (let participant of match['participants']) {
-        if (participant['participantId'] == this.participantId) {
+    for (let i = 0; i < this.matchesInfo.length; i++) {
+      for (let participant of this.matchesInfo[i]['participants']) {
+        if (participant['participantId'] == this.participantIds[i]) {
           if (array.findIndex((element) => {
             return element['championId'] === participant['championId'];
           }) == -1) {
@@ -77,10 +86,10 @@ export class SummonerComponent implements OnInit {
       }
     }
     return array.sort((a, b) => {
-      if (a['winRate'] > b['winRate']) {
+      if (a['winRate']['wins'] > b['winRate']['wins']) {
         return -1;
       }
-      if (a['winRate'] < b['winRate']) {
+      if (a['winRate']['wins'] < b['winRate']['wins']) {
         return 1;
       }
       return 0;
@@ -90,37 +99,53 @@ export class SummonerComponent implements OnInit {
   calculateWinRate(championId) {
     let win = 0;
     let total = 0;
-    for (let match of this.matchesInfo) {
-      if (match['participants'][this.participantId - 1]['stats']['win'] && match['participants'][this.participantId - 1]['championId'] == championId) {
-        win++;
+    for (let i = 0; i < this.matchesInfo.length; i++) {
+      for (let participant of this.matchesInfo[0]['participants']) {
+        if (this.matchesInfo[i]['participants'][this.participantIds[i] - 1]['stats']['win'] && this.matchesInfo[i]['participants'][this.participantIds[i] - 1]['championId'] == championId) {
+          win++;
+        }
+        if (this.matchesInfo[i]['participants'][this.participantIds[i] - 1]['championId'] == championId) {
+          total++;
+        }
       }
-      if (match['participants'][this.participantId - 1]['championId'] == championId) {
-        total++;
-      }
-
     }
-    return (win / total) * 100;
+    return {wins: win,  total: total};
   }
 
   getParticipantId(matches) {
     for (let match of matches) {
       for (let participantIden of match['participantIdentities']) {
         if (participantIden['player']['summonerName'] == this.summonerName) {
-          this.participantId = participantIden['participantId'];
+          this.participantIds.push(participantIden['participantId']);
         }
       }
     }
+    this.loading = false;
   }
 
   getChampionName(idC) {
     for (let champion of Object.values(this.champions)) {
       if (champion['key'] == idC) {
-        return champion['name'];
+        return champion['id'];
       }
     }
   }
 
-  checkWin(match) {
-    return match['participants'][this.participantId - 1]['stats']['win'];
+  getSummonerSpellName(idSp){
+    for(let spell in this.summonerSpells){
+      if(this.summonerSpells.hasOwnProperty(spell)){
+        if(this.summonerSpells[spell]['key'] === idSp.toString()){
+          return this.summonerSpells[spell]['image']['full'];
+        }
+      }
+    }
+  }
+
+  getQueueName(idQ){
+    for(let queue of this.queues){
+      if (queue['id'] === idQ){
+        return queue['name']
+      }
+    }
   }
 }
