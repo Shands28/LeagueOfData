@@ -24,6 +24,11 @@
 .home-livestreams-list {
   border: 1px solid black;
   border-radius: 5px;
+  background: linear-gradient(135deg, #042a38 40%, #b32442 100%);
+}
+
+.home-livestreams-list > * {
+  color: white;
 }
 
 .home-livestreams-link {
@@ -31,7 +36,7 @@
 }
 
 .home-livestreams-link:hover {
-  color: white;
-  background-color: #4B357D;
+  color: black;
+  background-color: #ff8894;
   border-radius: 5px;
 }
