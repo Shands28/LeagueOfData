@@ -4,13 +4,13 @@
             fxLayoutAlign=" center" class="livestream-card">
     <a
       [href]="'https://www.twitch.tv/' + livestream?.thumbnail_url.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '').replace('-{width}x{height}.jpg', '')"
-      class="livestream-card-link">
-      <mat-card-content fxFill>
+      class="livestream-card-link" fxLayout="column" target="_blank">
+      <mat-card-content fxFlex="90">
         <img mat-card-sm-image [src]="formatImageUrl(livestream?.thumbnail_url)"
              [alt]=" livestream?.thumbnail_url.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '').replace('-{width}x{height}.jpg', '') +
              ' Thumbnail'" fxFill>
       </mat-card-content>
-      <div fxFill fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between center">
         <mat-card-title class="livestream-card-text">{{livestream?.user_name}}</mat-card-title>
         <mat-card-subtitle class="livestream-card-text" fxLayoutAlign="center center">
           <mat-icon matTooltip="Viewers" matTooltipPosition="above">person</mat-icon>

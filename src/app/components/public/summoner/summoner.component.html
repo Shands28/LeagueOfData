@@ -31,9 +31,9 @@
   </div>
   <div *ngIf="summonerStats.matchHistory.length > 0" class="summoner-info-match-history-wrapper" fxLayout="row"
        fxLayoutAlign="space-evenly start">
-    <div fxFlex>
+    <div fxFlex fxShow.lg fxHide.lt-md>
       Stats
-      <mat-list role="list" *ngFor="let champion of getChampionsPlayed().slice(0, 10)">
+      <mat-list role="list" *ngFor="let champion of championsPlayed.slice(0, 10)">
         <mat-list-item role="listitem">
           <img matListAvatar src="../assets/img/champion/{{champion['name'] | nbsp}}.png"
                [alt]="champion['name'] + ' Avatar'">
@@ -91,9 +91,9 @@
               </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div *ngIf="matchHeader.panel.expanded" fxFill>
+          <div *ngIf="matchHeader.panel.expanded" fxFill class="summoner-info-match-history-wrapper">
             <table class="summoner-info-match-table" fxLayout="column">
-              <thead fxFill>
+              <thead class="summoner-info-match-history-row">
               <tr fxLayoutAlign="space-between">
                 <th fxFlex></th>
                 <th fxFlex="30">Summoner Name</th>
@@ -104,15 +104,19 @@
                 <th fxFlex="10">Heal</th>
               </tr>
               </thead>
-              <tbody fxFill>
-              <tr *ngFor="let participant of match['participantIdentities'].slice(0,5); let i = index" fxFill
-                  fxLayoutAlign="space-between" class="summoner-info-match-history-blueTeam">
+              <tbody class="summoner-info-match-history-row">
+              <tr *ngFor="let participant of match['participantIdentities'].slice(0,5); let i = index"
+                  fxLayoutAlign="space-between"
+                  class="summoner-info-match-history-blueTeam summoner-info-match-history-row">
                 <td fxFlex fxLayoutAlign="center center">
                   <img src="./assets/img/profileicon/{{participant['player']['profileIcon']}}.png"
                        alt="{{participant['player']['summonerName']}}'s avatar"
                        class="summoner-info-match-summoner-icon">
                 </td>
-                <td fxFlex="30">{{participant['player']['summonerName']}}</td>
+                <td fxFlex="30"
+                    [class.summoner-info-match-history-ownsummoner]="participant['player']['summonerName'] == summonerStats['summonerName']">
+                  {{participant['player']['summonerName']}}
+                </td>
                 <td
                   fxFlex="10">{{match['participants'][i]['highestAchievedSeasonTier'] ? match['participants'][i]['highestAchievedSeasonTier'] : 'None'}}</td>
                 <td fxFlex="20">{{getChampionName(match['participants'][i]['championId'])}}</td>
@@ -124,9 +128,10 @@
                 <td fxFlex="10">{{match['participants'][i]['stats']['totalDamageDealt']}}
                 <td fxFlex="10">{{match['participants'][i]['stats']['totalHeal']}}</td>
               </tr>
-              <tr fxLayout="row" fxLayoutAlign="center" class="summoner-info-match-history-statsrow" fxFill>
+              <tr fxLayout="row" fxLayoutAlign="center"
+                  class="summoner-info-match-history-statsrow summoner-info-match-history-row">
                 <td colspan="4" fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="50">
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFill>
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" class="summoner-info-match-history-row">
                     <div>{{match['teams'][1]['win'] == 'Win' ? 'Win' : 'Lose'}}</div>
                     <div *ngIf="!match['teams'][0]['vilemawKills']">Baron: {{match['teams'][1]['baronKills']}}</div>
                     <div *ngIf="!match['teams'][0]['vilemawKills']">Dragon: {{match['teams'][1]['dragonKills']}}</div>
@@ -136,7 +141,7 @@
                   </div>
                 </td>
                 <td colspan="4" fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="50">
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFill>
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" class="summoner-info-match-history-row">
                     <div *ngIf="match['teams'][0]['vilemawKills']">Vilemaw: {{match['teams'][0]['vilemawKills']}}</div>
                     <div *ngIf="!match['teams'][0]['vilemawKills']">
                       Herald: {{match['teams'][0]['riftHeraldKills']}}</div>
@@ -146,14 +151,18 @@
                   </div>
                 </td>
               </tr>
-              <tr *ngFor="let participant of match['participantIdentities'].slice(5); let i = index" fxFill
-                  fxLayoutAlign="space-between" class="summoner-info-match-history-redTeam">
+              <tr *ngFor="let participant of match['participantIdentities'].slice(5); let i = index"
+                  fxLayoutAlign="space-between"
+                  class="summoner-info-match-history-redTeam summoner-info-match-history-row">
                 <td fxFlex fxLayoutAlign="center center">
                   <img src="./assets/img/profileicon/{{participant['player']['profileIcon']}}.png"
                        alt="{{participant['player']['summonerName']}}'s avatar"
                        class="summoner-info-match-summoner-icon">
                 </td>
-                <td fxFlex="30">{{participant['player']['summonerName']}}</td>
+                <td fxFlex="30"
+                    [class.summoner-info-match-history-ownsummoner]="participant['player']['summonerName'] == summonerStats['summonerName']">
+                  {{participant['player']['summonerName']}}
+                </td>
                 <td
                   fxFlex="10">{{match['participants'][i]['highestAchievedSeasonTier'] ? match['participants'][i]['highestAchievedSeasonTier'] : 'None'}}</td>
                 <td fxFlex="20">{{getChampionName(match['participants'][i + 4]['championId'])}}</td>

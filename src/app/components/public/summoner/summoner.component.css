@@ -91,25 +91,38 @@ mat-expansion-panel .summoner-info-match-history-lose {
   text-align: center;
 }
 
-.summoner-info-match-table td{
-  border: 1px solid rgba(255,255,255,.35);
+.summoner-info-match-table td {
+  border: 1px solid rgba(255, 255, 255, .35);
+  padding: .5em;
 }
 
 .summoner-info-match-summoner-icon {
-  width: 20px
+  width: 25px
 }
 
 .summoner-info-match-history-statsrow {
   background: #6495ed;
-  background: -moz-linear-gradient(left,  #6495ed 0%, #db7093 100%);
-  background: -webkit-linear-gradient(left,  #6495ed 0%,#db7093 100%);
-  background: linear-gradient(to right,  #6495ed 0%,#db7093 100%);
+  background: -moz-linear-gradient(left, #6495ed 15%, #db6464 85%);
+  background: -webkit-linear-gradient(left, #6495ed 30%, #db6464 85%);
+  background: linear-gradient(to right, #6495ed 15%, #db6464 85%);
 }
 
 .summoner-info-match-history-redTeam {
-  background: palevioletred;
+  background: #db6464;
 }
 
 .summoner-info-match-history-blueTeam {
   background: cornflowerblue;
+}
+
+.summoner-info-match-history-wrapper {
+  margin-top: 1.5em;
+}
+
+.summoner-info-match-history-row {
+  width: 100%;
+}
+
+.summoner-info-match-history-ownsummoner {
+  font-weight: bold;
 }

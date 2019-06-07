@@ -20,12 +20,12 @@ export class SummonerComponent implements OnInit {
 
   participantIds: Array<number> = [];
   matchesInfo: Array<any>;
+  championsPlayed: Array<any>;
 
   champions;
   summonerSpells;
   queues;
 
-  loadingMatch: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,24 +35,23 @@ export class SummonerComponent implements OnInit {
     this.summonerName = route.snapshot.params['name'];
     this.region = route.snapshot.params['region'];
     this._summonerService.getSummonerInfo(this.summonerName, this.region).subscribe(result => {
-      // if( result['status'] == 200) {
-      //   this.summonerStats = result['body'];
-      // }
       this.summonerStats = result;
     });
     this._summonerService.getSummonerMatchesInfo(this.summonerName, this.region).subscribe(result => {
       this.getParticipantId(result);
       this.matchesInfo = result;
+      this.championsPlayed = this.getChampionsPlayed();
+      this.loading = false;
     });
     this._summonerService.getChampionsIcons().subscribe(res => {
       this.champions = res['data'];
     });
-    this._summonerService.getSummonerSpells().subscribe( res => {
+    this._summonerService.getSummonerSpells().subscribe(res => {
       this.summonerSpells = res['data'];
     });
-    this._summonerService.getQueues().subscribe( res => {
+    this._summonerService.getQueues().subscribe(res => {
       this.queues = res;
-    })
+    });
   }
 
   ngOnInit() {
@@ -109,7 +108,7 @@ export class SummonerComponent implements OnInit {
         }
       }
     }
-    return {wins: win,  total: total};
+    return {wins: win, total: total};
   }
 
   getParticipantId(matches) {
@@ -120,7 +119,6 @@ export class SummonerComponent implements OnInit {
         }
       }
     }
-    this.loading = false;
   }
 
   getChampionName(idC) {
@@ -131,20 +129,20 @@ export class SummonerComponent implements OnInit {
     }
   }
 
-  getSummonerSpellName(idSp){
-    for(let spell in this.summonerSpells){
-      if(this.summonerSpells.hasOwnProperty(spell)){
-        if(this.summonerSpells[spell]['key'] === idSp.toString()){
+  getSummonerSpellName(idSp) {
+    for (let spell in this.summonerSpells) {
+      if (this.summonerSpells.hasOwnProperty(spell)) {
+        if (this.summonerSpells[spell]['key'] === idSp.toString()) {
           return this.summonerSpells[spell]['image']['full'];
         }
       }
     }
   }
 
-  getQueueName(idQ){
-    for(let queue of this.queues){
-      if (queue['id'] === idQ){
-        return queue['name']
+  getQueueName(idQ) {
+    for (let queue of this.queues) {
+      if (queue['id'] === idQ) {
+        return queue['name'];
       }
     }
   }
