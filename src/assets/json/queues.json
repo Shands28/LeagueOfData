@@ -1,0 +1,294 @@
+[
+  {
+    "name": "Custom",
+    "id": 0
+  },
+  {
+    "name": "Normal",
+    "id": 1
+  },
+  {
+    "name": "ARAM",
+    "id": 62
+  },
+  {
+    "name": "ARAM",
+    "id": 63
+  },
+  {
+    "name": "ARAM",
+    "id": 64
+  },
+  {
+    "name": "Snowdown Showdown",
+    "id": 72
+  },
+  {
+    "name": "Snowdown Showdown",
+    "id": 73
+  },
+  {
+    "name": "Hexakill",
+    "id": 75
+  },
+  {
+    "name": "The Teemoing",
+    "id": 90
+  },
+  {
+    "name": "Ascension",
+    "id": 97
+  },
+  {
+    "name": "Hexakill",
+    "id": 98
+  },
+  {
+    "name": "ARAM",
+    "id": 100
+  },
+  {
+    "name": "Legend of the Poro King",
+    "id": 301
+  },
+  {
+    "name": "Nemesis",
+    "id": 310
+  },
+  {
+    "name": "Black Market Brawlers",
+    "id": 313
+  },
+  {
+    "name": "Nexus Siege",
+    "id": 314
+  },
+  {
+    "name": "Definitely Not Dominion",
+    "id": 316
+  },
+  {
+    "name": "Definitely Not Dominion",
+    "id": 317
+  },
+  {
+    "name": "AR Ultra Rapid Fire",
+    "id": 319
+  },
+  {
+    "name": "Blood Hunt Assassin",
+    "id": 320
+  },
+  {
+    "name": "Blood Hunt Assassin",
+    "id": 321
+  },
+  {
+    "name": "ARSR",
+    "id": 324
+  },
+  {
+    "name": "ARSR",
+    "id": 325
+  },
+  {
+    "name": "Normal",
+    "id": 400
+  },
+  {
+    "name": "Normal",
+    "id": 401
+  },
+  {
+    "name": "Normal",
+    "id": 402
+  },
+  {
+    "name": "Normal",
+    "id": 403
+  },
+  {
+    "name": "Ranked",
+    "id": 411
+  },
+  {
+    "name": "Ranked",
+    "id": 412
+  },
+  {
+    "name": "Ranked",
+    "id": 413
+  },
+  {
+    "name": "Ranked Solo/Duo",
+    "id": 420
+  },
+  {
+    "name": "Ranked Solo/Duo",
+    "id": 421
+  },
+  {
+    "name": "Ranked Solo/Duo",
+    "id": 422
+  },
+  {
+    "name": "Normal",
+    "id": 430
+  },
+  {
+    "name": "Normal",
+    "id": 431
+  },
+  {
+    "name": "Normal",
+    "id": 432
+  },
+  {
+    "name": "Normal",
+    "id": 433
+  },
+  {
+    "name": "Ranked Flex",
+    "id": 440
+  },
+  {
+    "name": "Ranked Flex",
+    "id": 441
+  },
+  {
+    "name": "Ranked Flex",
+    "id": 442
+  },
+  {
+    "name": "ARAM",
+    "id": 450
+  },
+  {
+    "name": "ARAM",
+    "id": 451
+  },
+  {
+    "name": "ARAM",
+    "id": 452
+  },
+  {
+    "name": "Normal 3v3",
+    "id": 460
+  },
+  {
+    "name": "Ranked 3v3",
+    "id": 470
+  },
+  {
+    "name": "Blood Hunt Assassin",
+    "id": 600
+  },
+  {
+    "name": "Blood Hunt Assassin",
+    "id": 601
+  },
+  {
+    "name": "Dark Star: Singularity",
+    "id": 610
+  },
+  {
+    "name": "Dark Star: Singularity",
+    "id": 611
+  },
+  {
+    "name": "AR Ultra Rapid Fire",
+    "id": 900
+  },
+  {
+    "name": "AR Ultra Rapid Fire",
+    "id": 901
+  },
+  {
+    "name": "Ascension",
+    "id": 910
+  },
+  {
+    "name": "Ascension",
+    "id": 911
+  },
+  {
+    "name": "Legend of the Poro King",
+    "id": 920
+  },
+  {
+    "name": "Legend of the Poro King",
+    "id": 921
+  },
+  {
+    "name": "ARAM",
+    "id": 930
+  },
+  {
+    "name": "ARAM",
+    "id": 931
+  },
+  {
+    "name": "Nexus Siege",
+    "id": 940
+  },
+  {
+    "name": "Nexus Siege",
+    "id": 941
+  },
+  {
+    "name": "Doom Bots Voting",
+    "id": 950
+  },
+  {
+    "name": "Level 100 Gauntlet",
+    "id": 951
+  },
+  {
+    "name": "Doom Bots Standard",
+    "id": 960
+  },
+  {
+    "name": "The Teemoing",
+    "id": 961
+  },
+  {
+    "name": "Hexakill",
+    "id": 970
+  },
+  {
+    "name": "Star Guardian Invasion: Normal",
+    "id": 980
+  },
+  {
+    "name": "Star Guardian Invasion: Normal",
+    "id": 981
+  },
+  {
+    "name": "Star Guardian Invasion: Normal",
+    "id": 982
+  },
+  {
+    "name": "Star Guardian Invasion: Onslaught",
+    "id": 990
+  },
+  {
+    "name": "PROJECT: Hunters",
+    "id": 1000
+  },
+  {
+    "name": "PROJECT: Hunters",
+    "id": 1001
+  },
+  {
+    "name": "Snow Battle ARURF",
+    "id": 1010
+  },
+  {
+    "name": "Snow Battle ARURF",
+    "id": 1011
+  },
+  {
+    "name": "Nexus Blitz",
+    "id": 1200
+  }
+]

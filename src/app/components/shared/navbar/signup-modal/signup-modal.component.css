@@ -1,0 +1,32 @@
+.signup_close-wrapper {
+  width: 100%;
+}
+
+.signup_close-button {
+  font-weight: 600;
+  font-size: 12px;
+  height: 3em;
+  color: #a8a8a8;
+}
+
+.signup-input {
+  width: 70%;
+}
+
+.signup-header {
+  width: 70%;
+  padding: 0.5em 0;
+  background: white;
+  color: #a8a8a8;
+  position: sticky;
+  top: 0;
+}
+
+.signup-header h1 {
+  font-weight: bold;
+  color: #5b6374;
+}
+
+.signup-form-summoner-add {
+  width: 70%;
+}

@@ -1,0 +1,24 @@
+.navbar {
+  color: #4f6577;
+  -webkit-box-shadow: 0 3px 12px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 12px 3px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  min-height: 64px;
+}
+
+.navbar-options-menu-logout:hover {
+  background-color: #F44336;
+  color: white;
+}
+
+.navbar-options-menu-logout:hover .navbar-options-menu-logout-icon {
+  color: white;
+}
+
+.active {
+  border: 1px solid rgba(144,144,144,0.50);
+}

@@ -1,0 +1,26 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" class="login-header">
+    <h1 fxFlex="10" mat-dialog-title>Sign up</h1>
+  </div>
+  <form [formGroup]="logInForm" (ngSubmit)="logInUser()" fxLayout="column" fxFill
+        fxLayoutAlign="center center" fxLayoutGap=".5em">
+    <mat-form-field class="login-input">
+      <mat-label>Username</mat-label>
+      <input matInput id="userName" type="text" formControlName="userName" fxFill
+             placeholder="Insert an Username">
+    </mat-form-field>
+    <mat-form-field class="login-input">
+      <mat-label>Password</mat-label>
+      <input matInput id="userPass" type="password" formControlName="userPass" fxFill
+             placeholder="Insert a Password">
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="login-input">
+      <button type="submit" mat-flat-button color="primary" [disabled]="logInForm.status!=='VALID'" fxFlexOrder="1">
+        Log in
+      </button>
+      <button mat-flat-button color="warn" (click)="closeDialog()" fxFlexOrder="0">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
