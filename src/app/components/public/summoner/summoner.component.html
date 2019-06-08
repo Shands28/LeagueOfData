@@ -9,8 +9,8 @@
       <button mat-icon-button>
         <mat-icon>{{summonerStats['savedAccounts'] ? 'star' : 'star_border'}}</mat-icon>
       </button>
-      <button mat-raised-button>Refresh data</button>
-      <button mat-raised-button>Take over</button>
+      <button mat-raised-button color="warn">Refresh data</button>
+      <button mat-raised-button color="accent">Take over</button>
     </div>
   </div>
   <div *ngIf="summonerStats.ranks.length == 0">
@@ -45,7 +45,7 @@
         </mat-list-item>
       </mat-list>
     </div>
-    <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+    <div fxFlex="70" fxLayout="column" fxLayoutAlign="start center">
       <mat-accordion fxFill>
         <mat-expansion-panel
           *ngFor="let match of matchesInfo.slice(beginIndex, endIndex); let i = index">

@@ -1,31 +1,29 @@
-<div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-evenly center" *ngIf="!loading"
-     class="livestreams-wrapper">
-  <mat-card *ngFor="let livestream of livestreams" fxFlex="30" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column"
-            fxLayoutAlign=" center" class="livestream-card">
-    <a
-      [href]="'https://www.twitch.tv/' + livestream?.thumbnail_url.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '').replace('-{width}x{height}.jpg', '')"
-      class="livestream-card-link" fxLayout="column" target="_blank">
+<div *ngIf="!loading" class="livestreams-wrapper" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column"
+     fxLayoutAlign="space-evenly center">
+  <mat-card *ngFor="let livestream of livestreams" class="livestream-card" fxFlex="30" fxFlex.sm="100" fxFlex.xs="100"
+            fxLayout="column" fxLayoutAlign=" center">
+    <a [href]="'https://www.twitch.tv/' + livestream?.thumbnail_url.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '').replace('-{width}x{height}.jpg', '')" class="livestream-card-link" fxLayout="column" target="_blank">
       <mat-card-content fxFlex="90">
-        <img mat-card-sm-image [src]="formatImageUrl(livestream?.thumbnail_url)"
-             [alt]=" livestream?.thumbnail_url.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '').replace('-{width}x{height}.jpg', '') +
-             ' Thumbnail'" fxFill>
+        <img [alt]=" livestream?.thumbnail_url.replace('https://static-cdn.jtvnw.net/previews-ttv/live_user_', '').replace('-{width}x{height}.jpg', '') +
+             ' Thumbnail'" [src]="formatImageUrl(livestream?.thumbnail_url)"
+             fxFill mat-card-sm-image>
       </mat-card-content>
       <div fxFlex="10" fxLayout="row" fxLayoutAlign="space-between center">
-        <mat-card-title class="livestream-card-text">{{livestream?.user_name}}</mat-card-title>
-        <mat-card-subtitle class="livestream-card-text" fxLayoutAlign="center center">
-          <mat-icon matTooltip="Viewers" matTooltipPosition="above">person</mat-icon>
-          <div>{{livestream?.viewer_count | number}}</div>
+        <mat-card-title class="card-titles">{{livestream?.user_name}}</mat-card-title>
+        <mat-card-subtitle fxFlexAlign="stretch" class="card-titles" fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon fxFlexAlign="center" color="warn" matTooltip="Viewers" matTooltipPosition="above">person</mat-icon>
+          <div fxFlexAlign="center">{{livestream?.viewer_count}}</div>
         </mat-card-subtitle>
       </div>
     </a>
   </mat-card>
-  <div fxFill fxLayout="row" fxLayoutAlign="center center">
-    <button mat-icon-button (click)="getMoreLivestreams()" matTooltip="Click to load more livestreams"
-            matTooltipPosition="above" matTooltipHideDelay="100">
+  <div class="load_more--container" fxFill fxLayout="row" fxLayoutAlign="center center">
+    <button (click)="getMoreLivestreams()" color="primary" mat-mini-fab matTooltip="Click to load more livestreams"
+            matTooltipHideDelay="100" matTooltipPosition="above">
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
   </div>
 </div>
-<div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="loading-wrapper">
-  <span><mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner></span>
+<div *ngIf="loading" class="loading-wrapper" fxLayout="column" fxLayoutAlign="center center">
+  <span><mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner></span>
 </div>

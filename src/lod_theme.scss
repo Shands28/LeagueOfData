@@ -1,0 +1,112 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$lod-primary: (
+  50 : #e1e5e7,
+  100 : #b4bfc3,
+  200 : #82959c,
+  300 : #4f6a74,
+  400 : #2a4a56,
+  500 : #042a38,
+  600 : #032532,
+  700 : #031f2b,
+  800 : #021924,
+  900 : #010f17,
+  A100 : #57abff,
+  A200 : #2491ff,
+  A400 : #0078f0,
+  A700 : #006bd6,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$lod-accent: (
+  50 : #efe1e7,
+  100 : #d6b5c2,
+  200 : #bb8499,
+  300 : #9f5370,
+  400 : #8b2e52,
+  500 : #760933,
+  600 : #6e082e,
+  700 : #630627,
+  800 : #590520,
+  900 : #460214,
+  A100 : #ff7a93,
+  A200 : #ff4769,
+  A400 : #ff1440,
+  A700 : #fa002e,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$lod-warn: (
+  50 : #f6e5e8,
+  100 : #e8bdc6,
+  200 : #d992a1,
+  300 : #ca667b,
+  400 : #be455e,
+  500 : #b32442,
+  600 : #ac203c,
+  700 : #a31b33,
+  800 : #9a162b,
+  900 : #8b0d1d,
+  A100 : #ffbbc2,
+  A200 : #ff8894,
+  A400 : #ff5566,
+  A700 : #ff3b4f,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #ffffff,
+  )
+);
+
+$primary: mat-palette($lod-primary, 500, 300, 900);
+$accent: mat-palette($lod-accent, 500, 300, 900);
+$warn: mat-palette($lod-warn, 500, 300, 900);
+$info: mat-palette($lod-accent, 300, 50, A700);
+
+$lod-theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($lod-theme);

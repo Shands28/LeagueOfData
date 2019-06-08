@@ -25,9 +25,9 @@ export class NavbarComponent implements OnInit {
   openSignInModal(){
     const dialogRef = this.dialog.open(SignupModalComponent, {
       width: '35%',
-      minWidth: '360px',
-      height: '60%',
-      minHeight: '600px',
+      minWidth: '550px',
+      height: '50%',
+      minHeight: '550px',
       autoFocus: false,
       disableClose: false,
       data: {
