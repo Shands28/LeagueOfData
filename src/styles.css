@@ -1,9 +1,0 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-* {
-  font-family: 'Roboto', sans-serif;
-}
-.wip {
-  color: #fcd202;
-  text-shadow: 1px 1px 3px black;
-}
