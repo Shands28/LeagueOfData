@@ -14,7 +14,7 @@ export class SummonerService {
   }
 
   getSummonerInfo(summonerName, region) {
-    return this.http.get(this.summonerUrl + 'register/' + name + '/' + region, {observe: 'response'}).pipe(map((data: any) => {
+    return this.http.get(this.summonerUrl + 'register/' + summonerName + '/' + region, {observe: 'response'}).pipe(map((data: any) => {
       return data;
     }));
   }
