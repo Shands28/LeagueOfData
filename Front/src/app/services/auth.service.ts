@@ -23,7 +23,7 @@ export class AuthService {
       'username': form['summonerNameUser'],
       'password': form['regionUser']
     };
-    return this.http.post(this.logUrl + 'register', body, {headers, observe: 'response'}).pipe(map((data: any) => {
+    return this.http.post(this.logUrl + 'login', body, {headers, observe: 'response'}).pipe(map((data: any) => {
       return data;
     }))
   }
@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   getUserName() {
-    return this.http.get(this.logUrl + '', {
+    return this.http.get(this.logUrl + 'user', {
       observe: 'response', params: new HttpParams().append('token', localStorage.getItem('t'))
     }).pipe(map((data: any) => {
       return data;
