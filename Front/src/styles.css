@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: 'Archivo', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Ramabhadra', sans-serif;
+}
+
+body {
+  background-color: #F7F5EB;
+  height: auto;
+  margin: 0;
+  min-width: 1900px;
+  min-height: 1000px;
+}
+
+.wip {
+  color: #fcd202;
+  text-shadow: 1px 1px 3px black;
+}

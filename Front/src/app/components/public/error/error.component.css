@@ -1,0 +1,8 @@
+.error-wrapper {
+  width: 100%;
+  margin-top: 7em;
+}
+
+.error-message {
+  color: #6e082e;
+}
