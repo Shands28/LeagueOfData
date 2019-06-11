@@ -1,0 +1,42 @@
+.home-wrapper {
+  width: 100%;
+  margin-top: 7em;
+}
+
+.info-wrapper {
+  margin-top: 5em;
+}
+
+.home-statistics-title {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.home-livestreams-title {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.home-livestreams-list.mat-list.mat-list-base.ng-star-inserted{
+  padding-top: 0;
+}
+
+.home-livestreams-list {
+  border: 1px solid white;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #042a38 40%, #b32442 100%);
+}
+
+.home-livestreams-list > * {
+  color: white;
+}
+
+.home-livestreams-link {
+  text-decoration: none;
+}
+
+.home-livestreams-link:hover {
+  color: black;
+  background-color: #ff8894;
+  border-radius: 5px;
+}
