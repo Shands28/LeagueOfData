@@ -3,6 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="6eb50af4-78c1-4072-81d3-131d915a848a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/api_calls/data_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back/api_calls/data_api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/controllers/summonerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back/controllers/summonerController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back/routes/userRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/interfaces/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/interfaces/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/assets/img/Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/styles.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -14,10 +40,72 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/home/home.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="48" column="62" selection-start-line="48" selection-start-column="62" selection-end-line="48" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/home/home.component.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="524">
+              <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>savedAccounts</find>
+      <find>item</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Front/src/app/services/summoner.service.ts" />
+        <option value="$PROJECT_DIR$/Back/api_calls/data_api.js" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.css" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.html" />
+        <option value="$PROJECT_DIR$/Front/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.css" />
+        <option value="$PROJECT_DIR$/Front/src/styles.css" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.html" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.html" />
+        <option value="$PROJECT_DIR$/Front/src/app/interfaces/user.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/guards/auth.guard.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.html" />
+        <option value="$PROJECT_DIR$/Front/src/app/services/auth.service.ts" />
+        <option value="$PROJECT_DIR$/Back/controllers/summonerController.js" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.html" />
+        <option value="$PROJECT_DIR$/Front/src/app/services/news.service.ts" />
+        <option value="$PROJECT_DIR$/Back/controllers/noticiaController.js" />
+        <option value="$PROJECT_DIR$/Back/models/noticiaModel.js" />
+        <option value="$PROJECT_DIR$/Back/app.js" />
+        <option value="$PROJECT_DIR$/Back/routes/userRoutes.js" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.html" />
+        <option value="$PROJECT_DIR$/Front/src/app/services/user.service.ts" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.ts" />
+        <option value="$PROJECT_DIR$/Back/controllers/userController.js" />
+        <option value="$PROJECT_DIR$/Front/src/app/components/public/home/home.component.css" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="251" />
@@ -30,13 +118,79 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+              <item name="Front" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+              <item name="Front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+              <item name="Front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+              <item name="Front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+              <item name="Front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+              <item name="Front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LeagueOfData" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeagueOfData" type="462c0819:PsiDirectoryNode" />
+              <item name="Front" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="ts.external.directory.path" value="C:\Users\areni\Documents\Clase\ProyectoFinal\LeagueOfData\Front\node_modules\typescript\lib" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -60,17 +214,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560260718291</updated>
-      <workItem from="1560260723809" duration="374000" />
+      <workItem from="1560260723809" duration="5446000" />
+      <workItem from="1560277351040" duration="58000" />
+      <workItem from="1560277498171" duration="2187000" />
+      <workItem from="1560279851597" duration="3626000" />
+      <workItem from="1560344126849" duration="21859000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="706000" />
+    <option name="totallyTimeSpent" value="33508000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18703899" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18703899" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -84,7 +243,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -93,5 +252,322 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Back/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/api_calls/data_api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="60" selection-start-column="60" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/node_modules/express/lib/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="509" column="18" selection-start-line="509" selection-start-column="18" selection-end-line="509" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/routes/summonerRoutes.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/models/summonerModel.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="76" column="21" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#242#321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/lod_theme.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="103" selection-start-line="19" selection-start-column="103" selection-end-line="19" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="61" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/signup-modal/signup-modal.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/interfaces/user.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="88" selection-start-line="6" selection-start-column="88" selection-end-line="6" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/guards/auth.guard.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/navbar.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/services/summoner.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="8" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="59" lean-forward="true" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/controllers/noticiaController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/controllers/summonerController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-466">
+          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/services/news.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/routes/noticiaRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="50" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/node_modules/mongoose/lib/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="4248" column="11" selection-start-line="4248" selection-start-column="11" selection-end-line="4248" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/models/noticiaModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="41" lean-forward="true" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/home/home.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/private/user-profile/user-profile.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/models/userModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/services/user.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="72" column="7" lean-forward="true" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/services/auth.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/shared/navbar/login-modal/login-modal.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="41" column="7" lean-forward="true" selection-start-line="36" selection-start-column="6" selection-end-line="41" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/routes/userRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Back/controllers/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="307" column="23" selection-start-line="307" selection-start-column="23" selection-end-line="307" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/summoner/summoner.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="194" column="34" selection-start-line="194" selection-start-column="34" selection-end-line="194" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="48" column="62" selection-start-line="48" selection-start-column="62" selection-end-line="48" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front/src/app/components/public/home/home.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

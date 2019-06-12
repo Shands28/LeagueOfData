@@ -6,6 +6,7 @@ var app = express();
 //-Cargar Rutas
 var summoner_routes = require('./routes/summonerRoutes');
 var user_routes = require('./routes/userRoutes.js');
+var noticias_routes = require('./routes/noticiaRoutes.js');
 //-Configurar body-parser
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 //-Rutas Base
 app.use('/api', summoner_routes);
 app.use('/api', user_routes);
+app.use('/api', noticias_routes);
 
 
 module.exports = app;

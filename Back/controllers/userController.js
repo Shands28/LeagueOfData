@@ -1,6 +1,6 @@
 'use strict'
 var User = require('../models/userModel');
-var Summoner = require('../models/summonerModel')
+var Summoner = require('../models/summonerModel');
 var request = require('request');
 var bcrypt = require('bcrypt');
 var apiKey = require('../api_calls/data_api');
@@ -10,78 +10,107 @@ var jwt = require('jsonwebtoken');
 
 ////////       R R G I S T R O       /////////
 
-function registerUser(req, res){
+function registerUser(req, res) {
     var step = req.body.step;
     var uniqueString = '';
     var summonerName;
     var region;
     var summonerId;
-     
-    switch (step){
+    var profileIconId;
+    switch (step) {
         case '1':
-        console.log('STEP: 1');
+            console.log('STEP: 1');
             var username = req.body.username;
             var email = req.body.email;
             var password = req.body.password;
 
-            User.findOne({username: username}, (err, userObject) =>{
-                if(err){throw err}
-                if(userObject){
-                    res.status(401).send({message: 'El nombre de usuario ya existe en la BBDD'});
-                }else{
+            User.findOne({username: username}, (err, userObject) => {
+                if (err) {
+                    throw err
+                }
+                if (userObject) {
+                    res.status(401).send({message: 'Username already in use'});
+                } else {
                     res.status(200).send({message: "Pasar a paso 2"});
                 }
             });
-        break;
+            break;
         case '2':
             console.log('STEP: 2');
             summonerName = req.body.summonerName;
             region = req.body.region;
-            
 
-            Summoner.findOne({summonerName: {$regex: summonerName, $options: 'i'}}, (err, summonerObject) => {
-                if(err){throw err}
-                if(summonerObject){
+            Summoner.findOne({
+                summonerName: {$regex: summonerName, $options: 'i'},
+                region: region
+            }, (err, summonerObject) => {
+                if (err) {
+                    throw err
+                }
+                if (summonerObject) {
                     //Comprobar si esta linkeado
                     console.log('SUMMONER ENCONTRADO EN BBDD');
-                    summonerId = summonerObject.summonerId;
-                    User.findOne({savedAccounts: {$regex: summonerName, $options: 'i'}}, (err, item) => {
-                        if(err){throw err}
-                        if(item){
-                            res.status(403).send({message: 'El usuario introducido ya pertenece a un Usuario'});
-                        }else{
-                            uniqueString = uuidv4();
-                            res.status(200).send({userIdentifier: uniqueString, summonerId: summonerId, region: region, summonerObject:profileIconId});
+                    summonerId = summonerObject.id;
+                    profileIconId = summonerObject.profileIconId;
+                    User.findOne({
+                        linkedAccounts: {$regex: summonerName, $options: 'i'},
+                        region: region
+                    }, (err, item) => {
+                        if (err) {
+                            throw err
                         }
-                    }).limit(1);
-                }else{
+                        if (item) {
+                            res.status(403).send({message: 'Summoner linked to another account'});
+                        } else {
+                            uniqueString = uuidv4();
+                            res.status(200).send({
+                                userIdentifier: uniqueString,
+                                summonerId: summonerId,
+                                region: region,
+                                userIconId: profileIconId
+                            });
+                        }
+                    });
+                } else {
                     var summonerUrl = `https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${apiKey}`;
                     request(summonerUrl, (error, response, body) => {
                         console.log('CONSULTANDO API');
-                        if(error){
+                        if (error) {
                             res.status(404).send({message: 'Error al consultar API - Ruta summonerName'})
-                        }
-                        else if(response.statusCode == 200){
-                            
-                            User.findOne({savedAccounts: {$regex: JSON.parse(body).name, $options: 'i'}}, (err, item) => {
-                                if(err){throw err}
-                                if(item){
-                                    res.status(403).send({message: 'El usuario introducido ya pertenece a un Usuario'});
-                                }else{
+                        } else if (response.statusCode === 200) {
+
+                            User.findOne({
+                                linkedAccounts: {
+                                    $regex: JSON.parse(body).name,
+                                    $options: 'i'
+                                }
+                            }, (err, item) => {
+                                if (err) {
+                                    throw err
+                                }
+                                if (item) {
+                                    res.status(403).send({message: 'Summoner linked to another account'});
+                                } else {
                                     uniqueString = uuidv4();
                                     summonerId = JSON.parse(body).id;
-                                    res.status(200).send({userIdentifier: uniqueString, summonerId: summonerId, region: region, profileIconId: body.profileIconId});
+                                    profileIconId = JSON.parse(body).profileIconId;
+                                    res.status(200).send({
+                                        userIdentifier: uniqueString,
+                                        summonerId: summonerId,
+                                        region: region,
+                                        userIconId: profileIconId
+                                    });
                                 }
                             });
-                        }else{
-                            res.status(402).send({message: 'sumonerName no se encuentra en la API'})
+                        } else {
+                            res.status(402).send({message: 'Summoner not found'})
                         }
                     });
                 }
             });
-        break;
+            break;
         case '3':
-        console.log('STEP: 3');
+            console.log('STEP: 3');
             var myUser = new User();
             var username = req.body.username;
             var email = req.body.email;
@@ -92,114 +121,204 @@ function registerUser(req, res){
             var summonerId = req.body.summonerId;
             var profileIconId = req.body.profileIconId;
             var verificationCode;
-
-
+            console.log(req.body);
             //LLAMAR API LOL PARA OBTENER ESTA VARIABLE
             var verificationUrl = `https://${region}.api.riotgames.com/lol/platform/v4/third-party-code/by-summoner/${summonerId}?api_key=${apiKey}`;
             request(verificationUrl, (error, response, body) => {
-                if(error){
+                if (error) {
                     throw error
-                }else if(response.statusCode == 200){
+                } else if (response.statusCode === 200) {
                     verificationCode = JSON.parse(body);
                     console.log(verificationCode);
+                    console.log(userIdentifier);
+                    if (userIdentifier !== verificationCode) {
+                        res.status(401).send({message: 'ERROR: Verfication code does not match the code given'});
+                    } else {
 
-                    if(userIdentifier != verificationCode){
-                        res.status(401).send({message: 'ERROR: La clave proporcionada no coincide con la clave del usuario'});
-                    }else{
-        
                         //Insertar en la BBDD y enviar token
                         myUser.username = username;
                         myUser.email = email;
                         myUser.userIconId = profileIconId;
-                        myUser.linkedAccounts.push({summonerName: summonerName, region: region});
-                        myUser.savedAccounts = [{}];
+                        myUser.linkedAccounts.push({
+                            summonerName: summonerName,
+                            region: region,
+                            profileIconId: profileIconId
+                        });
+                        myUser.savedAccounts = [];
                         myUser.creationDate = Date.now();
-        
-                        if(password){
+
+                        if (password) {
                             bcrypt.hash(password, 12, (err, hashedPassword) => {
-                                if(err){
+                                if (err) {
                                     throw err;
                                 }
                                 myUser.password = hashedPassword;
-                                
+
                                 console.log('MYUSER');
-                            console.log(myUser);
-                            myUser.save()
-                                .then(myUser => {
-                                    console.log('USER SAVED');
-                                    console.log(myUser.password);
-                                    res.status(200).send(myUser);
-                                })
-                                .catch(err =>{
-                                    res.status(400).send(err);
-                                });
+                                console.log(myUser);
+                                myUser.save()
+                                    .then(myUser => {
+                                        console.log('USER SAVED');
+                                        console.log(myUser.password);
+                                        res.status(200).send(myUser);
+                                    })
+                                    .catch(err => {
+                                        res.status(400).send(err);
+                                    });
                             });
                         }
                     }
 
-                }else if(response.statusCode == 404){
-                    res.status(404).send({message: 'No se ha encontrado el código de verificación para el Summoner solicitado'})
-                }else if(response.statusCode == 500){
-                    res.status(500).send({message: 'Error del servidor'});
+                } else if (response.statusCode === 404) {
+                    res.status(404).send({message: 'Verfication code does not match the code given'})
+                } else if (response.statusCode === 500) {
+                    res.status(500).send({message: 'Connection error'});
                 }
-                
-            }); 
-        break;
+            });
+            break;
     }
 }
 
-function loginUser(req, res){
+function loginUser(req, res) {
+    console.log(req.body);
     var email = req.body.email;
     var password = req.body.password;
     var getHash = req.body.getHash;
 
-    User.findOne({email: {$regex: email, $options: 'i'}}, (err, userObject) => {
+    User.findOne({'$or': [{'email': email}, {'username': email}]}, (err, userObject) => {
         console.log(email);
         console.log(password);
-        if(err){
-            res.status(500).send({message: 'Error en la petición - Buscar User'});
-        }else{
-            if(userObject){
+        if (err) {
+            res.status(500).send({message: 'Connection error'});
+        } else {
+            if (userObject) {
                 //Check password
-                bcrypt.compare(password, userObject.password, (err, isMatch)=> {
-                    if(err){throw err}
-                    if(isMatch){
-                        if(getHash){
+                bcrypt.compare(password, userObject.password, (err, isMatch) => {
+                    if (err) {
+                        throw err
+                    }
+                    if (isMatch) {
+                        console.log('text');
+                        if (getHash) {
+                            console.log('text2');
                             //Devolver Token
-                            var token = jwt.sign({username : userObject.username, email: userObject.email,
-                                userIconId: userObject.userIconId, linkedAccounts: userObject.linkedAccounts, savedAccounts: userObject.savedAccounts}, 'secret', {expiresIn: '24h'});
-                            res.status(200).send(token);
-                        }else{
-                            res.status(406).send({message: 'Invalid Credentials'});   
-                        } 
+                            var token = jwt.sign({
+                                username: userObject.username,
+                                email: userObject.email,
+                                userIconId: userObject.userIconId,
+                                linkedAccounts: userObject.linkedAccounts,
+                                savedAccounts: userObject.savedAccounts,
+                                creationDate: userObject.creationDate
+                            }, 'secret', {expiresIn: '24h'});
+                            res.status(200).send({token: token});
+                        }
+                    } else {
+                        res.status(406).send({message: 'Password is incorrect. Please try loggin in again'});
                     }
                 });
-            }else{
-                res.status(401).send({message: 'El usuario introducido no existe'});
+            } else {
+                res.status(401).send({message: 'Username is incorrect. Please try loggin in again'});
             }
         }
     });
 }
-function getTokenData(req, res){
+
+function getTokenData(req, res) {
     var token = req.params.t;
-    jwt.verify(token, 'secret', function(err, tokenData){
-        if(err){
-            return res.status(400).send({message: 'Unathorized request'});
+    jwt.verify(token, 'secret', function (err, tokenData) {
+        if (err) {
+            res.status(404).send({message: 'Unauthorized request'});
         }
-        if(tokenData){
-            var decodedToken = tokenData;
-            console.log('DECODED TOKEN');
-            console.log(decodedToken);
-            res.status(200).send(decodedToken);
+        if (tokenData) {
+            res.status(200).send(tokenData);
         }
     });
 }
 
+function saveAccount(req, res) {
+    var token = req.body.token;
+    var summoner = req.body.summonerName;
+    var region = req.body.region;
+    var profileIconId = req.body.profileIconId;
+    jwt.verify(token, 'secret', function (err, tokenData) {
+        if (err) {
+            res.status(404).send({message: 'Unauthorized request'});
+        }
+        if (tokenData) {
+            console.log(tokenData);
+            User.updateOne({username: tokenData.username}, {
+                $push: {
+                    savedAccounts: {
+                        summonerName: summoner,
+                        region: region,
+                        profileIconId: profileIconId
+                    }
+                }
+            }, (err, user) => {
+                if (err) {
+                    res.status(500).send('Connection error - User/Save Account');
+                } else if (user) {
+                    User.findOne({'username': tokenData.username}, (err, userData) => {
+                        if (err) {
+                            res.status(500).send({message: 'Connection Error'});
+                        } else {
+                            var token = jwt.sign({
+                                username: userData.username,
+                                email: userData.email,
+                                userIconId: userData.userIconId,
+                                linkedAccounts: userData.linkedAccounts,
+                                savedAccounts: userData.savedAccounts,
+                                creationDate: userData.creationDate
+                            }, 'secret', {expiresIn: '24h'});
+                            res.status(200).send({token: token});
+                        }
+                    });
+                }
+            });
+        }
+    });
+}
+
+function dropAccount(req, res) {
+    var token = req.body.token;
+    var summoner = req.body.summonerName;
+    jwt.verify(token, 'secret', function (err, tokenData) {
+        if (err) {
+            res.status(404).send({message: 'Unauthorized request'});
+        }
+        if (tokenData) {
+            User.updateOne({username: tokenData.username}, {$pull: {savedAccounts: {summonerName: summoner}}}, (err, user) => {
+                if (err) {
+                    res.status(500).send('Connection error - User/Save Account');
+                } else if (user) {
+                    User.findOne({'username': tokenData.username}, (err, userData) => {
+                        if (err) {
+                            res.status(500).send({message: 'Connection Error'});
+                        } else {
+                            var token = jwt.sign({
+                                username: userData.username,
+                                email: userData.email,
+                                userIconId: userData.userIconId,
+                                linkedAccounts: userData.linkedAccounts,
+                                savedAccounts: userData.savedAccounts,
+                                creationDate: userData.creationDate
+                            }, 'secret', {expiresIn: '24h'});
+                            res.status(200).send({token: token});
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+}
 
 
 /* ************************************ T O K E N S **************************************** */
 module.exports = {
     registerUser,
     loginUser,
-    getTokenData
+    getTokenData,
+    saveAccount,
+    dropAccount
 }
