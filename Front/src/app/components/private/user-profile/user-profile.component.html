@@ -6,19 +6,21 @@
   <div fxLayout="row" fxLayoutAlign="space-evenly center" class="user-profile-info-wrapper">
     <div class="user-profile-info-avatar">
       <img
-        [src]="'./assets/img/profileicon/'+userInfo['savedAccounts'][0]?.profileIconId+'.png'"
+        [src]="'./assets/img/profileicon/'+userInfo['userIconId']+'.png'"
         alt="Summoner Icon" class="user-profile-table-summoner-icon" fxFill>
     </div>
     <div>
       <h2 class="user-profile-info-username">Username: <span>{{userInfo['username']}}</span></h2>
       <h3 class="user-profile-info-email">Email: <span>{{userInfo['email']}}</span></h3>
+      <h4 class="user-profile-info-date">Creation date: <span>{{userInfo['creationDate'] | date:'dd / MM / yyyy'}}</span></h4>
     </div>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center" class="user-profile-table-wrapper" fxLayoutGap="1em">
     <div *ngIf="userInfo['savedAccounts'].length == 0">
-      <p>No Accounts</p>
+      <p>No Accounts Saved</p>
     </div>
-    <div fxFill>
+    <div fxFill fxLayout="column" fxLayoutAlign="center center">
+      <h3>Saved Accounts</h3>
       <mat-table [dataSource]="userInfo['savedAccounts']" class="mat-elevation-z8"
                  *ngIf="userInfo['savedAccounts'].length > 0" fxFill>
         <ng-container matColumnDef="icon">
@@ -31,21 +33,37 @@
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <a [routerLink]="['/summoner/euw/'+element?.name]"
-               class="user-profile-table-name-link">{{element?.name}}</a>
+            <a [routerLink]="['/summoner/'+element?.region+'/'+element?.summonerName]"
+               class="user-profile-table-name-link">{{element?.summonerName}}</a>
           </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="level">
-          <mat-header-cell *matHeaderCellDef> Summoner Level</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element?.summonerLevel}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
     </div>
-    <div>
-      <button mat-raised-button color="primary">Add more accounts</button>
+    <div fxFill fxLayout="column" fxLayoutAlign="center center">
+      <h3>Linked Account</h3>
+      <mat-table [dataSource]="userInfo['linkedAccounts']" class="mat-elevation-z8"
+                 *ngIf="userInfo['linkedAccounts'].length > 0" fxFill>
+        <ng-container matColumnDef="icon">
+          <mat-header-cell *matHeaderCellDef> Icon</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <img [src]="'./assets/img/profileicon/'+element?.profileIconId+'.png'"
+                 alt="Summoner Icon" class="user-profile-table-summoner-icon">
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a [routerLink]="['/summoner/'+element?.region+'/'+element?.summonerName]"
+               class="user-profile-table-name-link">{{element?.summonerName}}</a>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
     </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 import {TwitchService} from '../../../services/twitch.service';
+import {NewsService} from "../../../services/news.service";
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,10 @@ import {TwitchService} from '../../../services/twitch.service';
 export class HomeComponent implements OnInit {
 
   loadingStreams: boolean = true;
+  loadingNews: boolean = true;
 
   livestreams;
+  news;
 
   searchSummonerForm = new FormGroup({
     summonerName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[\\d\\sa-zA-Z._]+$')])),
@@ -22,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private _twitchService: TwitchService
+    private _twitchService: TwitchService,
+    private _newsService: NewsService
   ) {
     this._twitchService.getTopLivestreams().subscribe(result => {
       if (result['status'] == 200) {
@@ -30,6 +34,12 @@ export class HomeComponent implements OnInit {
         this.loadingStreams = false;
       }
     });
+    this._newsService.getAllNews().subscribe(res => {
+      if (res['status'] === 200){
+        this.news = res['body'];
+        this.loadingNews = false;
+      }
+    })
   }
 
   ngOnInit() {

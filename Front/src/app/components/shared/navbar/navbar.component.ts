@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { MatDialog } from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {SignupModalComponent} from './signup-modal/signup-modal.component';
 import {LoginModalComponent} from './login-modal/login-modal.component';
 import {AuthService} from '../../../services/auth.service';
@@ -12,17 +12,31 @@ import {AuthService} from '../../../services/auth.service';
 export class NavbarComponent implements OnInit {
 
   logedIn: boolean = false;
+  userInfo;
+
 
   constructor(
     private dialog: MatDialog,
-    private _authService: AuthService
+    private _authService: AuthService,
   ) {
+    if (localStorage.getItem('token')) {
+      this._authService.getUserName().subscribe(res => {
+        if (res['status'] === 200) {
+          if (Date.now() > res['body']['exp']) {
+            this._authService.isLoggedIn = true;
+            this.logedIn = true;
+            this.userInfo = res['body'];
+            console.log(this.userInfo);
+          }
+        }
+      })
+    }
   }
 
   ngOnInit() {
   }
 
-  openSignUpModal(){
+  openSignUpModal() {
     const dialogRef = this.dialog.open(SignupModalComponent, {
       width: '35%',
       minWidth: '550px',
@@ -30,37 +44,35 @@ export class NavbarComponent implements OnInit {
       minHeight: '550px',
       autoFocus: false,
       disableClose: false,
-      data: {
-      }
+      data: {}
     });
     dialogRef.afterClosed().subscribe(res => {
-      if(res){
+      if (res) {
         this.openLogInModal();
       }
     });
   }
 
-  openLogInModal(){
-    const dialogRef = this.dialog.open(LoginModalComponent, {
+  openLogInModal() {
+    const dialogRef2 = this.dialog.open(LoginModalComponent, {
       width: '35%',
       minWidth: '360px',
       height: '35%',
       minHeight: '320px',
       autoFocus: false,
       disableClose: false,
-      data: {
-      }
+      data: {}
     });
-    dialogRef.afterClosed().subscribe(res => {
-      if(res){
-        this.logedIn = true;
+    dialogRef2.afterClosed().subscribe(res => {
+      console.log(res);
+      if (res) {
+        window.location.reload();
       }
     });
   }
 
-  logOut(){
+  logOut() {
     this._authService.logout();
-    this.logedIn = this._authService.isLoggedIn;
     window.location.reload();
   }
 

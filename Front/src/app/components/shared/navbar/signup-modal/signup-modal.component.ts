@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {UserService} from "../../../../services/user.service";
 
 @Component({
@@ -12,7 +12,9 @@ export class SignupModalComponent implements OnInit {
 
   userIdentifier;
 
-  errorMessage: string = '';
+  summonerId: string;
+  profileIconId: number;
+
 
   signUpForm: FormGroup = new FormGroup({
     userEmail: new FormControl('', [Validators.required, Validators.email]),
@@ -27,7 +29,8 @@ export class SignupModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SignupModalComponent>,
-    private _userService: UserService
+    private _userService: UserService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -37,11 +40,15 @@ export class SignupModalComponent implements OnInit {
   signUpUser(stepper) {
     this._userService.submitRegisterStepOne(this.signUpForm.value).subscribe(
       res => {
-        this.errorMessage = '';
         stepper.next();
       },
       error => {
-        this.errorMessage = error['message']
+        this.snackBar.open(error['error']['message'], 'Close', {
+          duration: 2000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          panelClass: ['my-snack-bar']
+        });
       }
     );
   }
@@ -53,11 +60,19 @@ export class SignupModalComponent implements OnInit {
   searchSummoner(stepper) {
     this._userService.submitRegisterStepTwo(this.addSummonerForm.value).subscribe(
       res => {
+        console.log(res);
         this.userIdentifier = res['body']['userIdentifier'];
+        this.summonerId = res['body']['summonerId'];
+        this.profileIconId = res['body']['userIconId'];
         stepper.next();
       },
       error => {
-        console.log(error);
+        this.snackBar.open(error['error']['message'], 'Close', {
+          duration: 2000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          panelClass: ['my-snack-bar']
+        });
       }
     );
   }
@@ -65,15 +80,22 @@ export class SignupModalComponent implements OnInit {
   validateSummoner(stepper) {
     let object = {
       userForm: this.signUpForm.value,
-      summonerForm: this.addSummonerForm.value
+      summonerForm: this.addSummonerForm.value,
+      summonerId: this.summonerId,
+      profileIconId: this.profileIconId,
+      userIdentifier: this.userIdentifier
     };
     this._userService.submitRegisterStepThree(object).subscribe(
       res => {
-        console.log('Good');
         this.dialogRef.close(true);
       },
       error => {
-        console.log(error);
+        this.snackBar.open(error['error']['message'], 'Close', {
+          duration: 2000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          panelClass: ['my-snack-bar']
+        });
       }
     );
   }

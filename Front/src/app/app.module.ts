@@ -16,7 +16,7 @@ import {
   MatInputModule, MatListModule,
   MatMenuModule, MatOptionModule, MatProgressSpinnerModule, MatSelectModule,
   MatToolbarModule, MatTooltipModule,
-  MatDialogModule, MatDividerModule, MatStepperModule, MatTableModule, MatExpansionModule
+  MatDialogModule, MatDividerModule, MatStepperModule, MatTableModule, MatExpansionModule, MatSnackBarModule
 } from '@angular/material';
 
 // Components
@@ -73,7 +73,8 @@ import { ErrorComponent } from './components/public/error/error.component';
     MatDividerModule,
     MatStepperModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthService
