@@ -1,3 +1,56 @@
-<div fxLayout="column" fxLayoutAlign="center center" class="statistics-wrapper">
-  <h1 class="wip"><mat-icon>warning</mat-icon>WORK IN PROGRESS<mat-icon>warning</mat-icon></h1>
+<div fxLayout="column" fxLayoutAlign="center center" class="statistics-wrapper" *ngIf="!loadingC && !loadingS"
+     (scroll)="onScroll($event)">
+  <div class="statistics-title-wrapper" fxLayout="row" fxLayoutAlign="start center" style="width: 80%">
+    <h1 class="statistics-title">Champion statistics</h1>
+  </div>
+  <table matSort (matSortChange)="sortData($event)" class="stats-table">
+    <thead style="width: 100%">
+    <tr fxLayout="row" class="statistics-table-headers">
+      <th fxFlex="10">Icon</th>
+      <th fxFlex="20">Champion name</th>
+      <th fxFlex="10" mat-sort-header="win_rate" fxLayoutAlign="center center">Win Rate</th>
+      <th fxFlex="10" mat-sort-header="pick_rate" fxLayoutAlign="center center">Pick Rate</th>
+      <th fxFlex="10" mat-sort-header="ban_rate" fxLayoutAlign="center center">Ban Rate</th>
+      <th fxFlex="10" mat-sort-header="kda" fxLayoutAlign="center center">KDA</th>
+      <th fxFlex="10" mat-sort-header="minionsKilledTotal" fxLayoutAlign="center center">Minions</th>
+      <th fxFlex="10" mat-sort-header="goldTotal" fxLayoutAlign="center center">Gold</th>
+      <th fxFlex="10" mat-sort-header="totalMatches" fxLayoutAlign="center center">Total matches</th>
+    </tr>
+    </thead>
+    <tbody style="width: 100%">
+    <tr *ngFor="let stat of stats | slice:0:endIndex" class="stats-stat-row">
+      <td fxFlex="10" fxLayout="column" fxLayoutAlign="center center">
+        <img
+          src="../assets/img/champion/{{getChampionName(stat.championId)}}.png"
+          alt="{{getChampionName(stat.championId)}} Avatar"
+          style="width: 40px; border-radius: 50%"
+          matTooltip="{{getChampionName(stat.championId)}}"
+          matTooltipPosition="after"
+        >
+      </td>
+      <td fxFlex="20" fxLayout="column" fxLayoutAlign="center center">{{getChampionName(stat.championId)}}</td>
+      <td fxFlex="10" fxLayout="column" fxLayoutAlign="center center">{{stat.win_rate}}%</td>
+      <td fxFlex="10" fxLayout="column" fxLayoutAlign="center center">{{stat.pick_rate}}%</td>
+      <td fxFlex="10" fxLayout="column" fxLayoutAlign="center center">{{stat.ban_rate}}%</td>
+      <td fxFlex="10" fxLayout="column"
+          fxLayoutAlign="center center">{{stat.kda / stat.matchesTotal | number:'.0-2'}}</td>
+      <td fxFlex="10" fxLayout="column"
+          fxLayoutAlign="center center">{{stat.minionsKilledTotal / stat.matchesTotal | number:'.0-0'}}</td>
+      <td fxFlex="10" fxLayout="column"
+          fxLayoutAlign="center center">{{stat.goldTotal / stat.matchesTotal | number:'.0-0'}}</td>
+      <td fxFlex="10" fxLayout="column" fxLayoutAlign="center center">{{stat.matchesTotal}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="statistics-button-load">
+    <button mat-mini-fab color="primary" matTooltip="Load more champions" [disabled]="endIndex>=stats.length"
+            (click)="moreChampions()">
+      <mat-icon>expand_more</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<div fxFill *ngIf="loadingC && loadingS" fxLayout="column" fxLayoutAlign="center center">
+  <span><mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner></span>
 </div>

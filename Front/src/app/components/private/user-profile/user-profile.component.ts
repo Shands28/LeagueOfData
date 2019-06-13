@@ -11,15 +11,22 @@ import {Router} from "@angular/router";
 export class UserProfileComponent implements OnInit {
   loadingAccounts: boolean;
   userInfo: Object;
-  displayedColumns: string[] = ['icon', 'name', 'level'];
+  displayedColumns: string[] = ['icon', 'name'];
 
   constructor(
     private _authService: AuthService,
     private router: Router
   ) {
     this.loadingAccounts = true;
-    this._authService.getUserName().subscribe(res => {
-        this.loadingAccounts = false;
+    this._authService.getUserName().subscribe(
+      res => {
+        if (res['status'] === 200) {
+          if (Date.now() > res['body']['exp']) {
+            this._authService.isLoggedIn = true;
+            this.userInfo = res['body'];
+            this.loadingAccounts = false;
+          }
+        }
       },
       error => {
         this.router.navigate(['/home']);

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {AuthService} from '../../../../services/auth.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {AuthService} from '../../../../services/auth.service';
 })
 export class LoginModalComponent implements OnInit {
 
-  isLoggedIn: boolean = false;
+  errorMessage: string = '';
 
   logInForm = new FormGroup({
     userName: new FormControl('', Validators.required),
@@ -19,7 +19,8 @@ export class LoginModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<LoginModalComponent>,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -28,14 +29,26 @@ export class LoginModalComponent implements OnInit {
   }
 
   closeDialog() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   logInUser() {
     this._authService.login(this.logInForm.value).subscribe((res) => {
-      console.log(res);
-      localStorage.setItem('token', res.toString());
-    });
+      if(res['status'] === 200){
+        localStorage.setItem('token', res['body']['token']);
+        this.dialogRef.close(true);
+      }else{
+        console.log(res);
+      }
+    },
+      (err)=>{
+        this.snackBar.open(err['error']['message'], 'Close', {
+          duration: 2000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          panelClass: ['my-snack-bar']
+        });
+      });
   }
 
 }

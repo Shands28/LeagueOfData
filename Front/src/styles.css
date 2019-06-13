@@ -19,3 +19,7 @@ body {
   color: #fcd202;
   text-shadow: 1px 1px 3px black;
 }
+
+.my-snack-bar .mat-simple-snackbar .mat-simple-snackbar-action button {
+  color: #ff7a93;
+}

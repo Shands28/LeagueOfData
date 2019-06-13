@@ -2,7 +2,7 @@
   <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex>
     <button mat-button [routerLink]="['/home']" routerLinkActive="active">Home</button>
     <button mat-button [routerLink]="['/statistics']" routerLinkActive="active">Statistics</button>
-<!--    <button mat-button [routerLink]="['/chat']" *ngIf="logedIn">Chat</button>-->
+    <!--    <button mat-button [routerLink]="['/chat']" *ngIf="logedIn">Chat</button>-->
     <button mat-button [routerLink]="['/livestreams']" routerLinkActive="active">Livestreams</button>
   </div>
   <div *ngIf="logedIn" fxFlex fxLayout="row" fxLayoutAlign="end center">
@@ -19,17 +19,15 @@
     </mat-menu>
 
     <mat-menu #subMenu="matMenu">
-      <button mat-menu-item>Shands</button>
-      <button mat-menu-item>Schurle3</button>
-      <button mat-menu-item>
-        <mat-icon>add</mat-icon>
-        Add more
+      <button mat-menu-item *ngFor="let savedAccount of userInfo?.savedAccounts">
+        <a href="/summoner/{{savedAccount?.region}}/{{savedAccount?.summonerName}}"
+           class="no-style-link">{{savedAccount?.summonerName}}</a>
       </button>
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="appMenu" fxLayout="row" fxLayoutAlign="space-evenly center">
       <mat-icon>arrow_drop_down</mat-icon>
-      Account
+      {{userInfo?.username | uppercase}}
     </button>
   </div>
   <div *ngIf="!logedIn" fxFlex="30" fxFlex.sm fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1em">

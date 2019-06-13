@@ -15,13 +15,6 @@ export class UserService {
   ) {
   }
 
-  getUserInfo() {
-    return this.http.get('../assets/pruebauser.json').pipe(map((data: any) => {
-      localStorage.setItem("JavierArenasLlorente", "Juasjuas");
-      return data;
-    }));
-  }
-
   submitRegisterStepOne(form: any) {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
@@ -59,10 +52,34 @@ export class UserService {
       'password': form['userForm']['userPass'],
       'userIdentifier': form['userIdentifier'],
       'summonerName': form['summonerForm']['summonerNameUser'],
-      'region': form['summonerForm']['regionUser']
+      'region': form['summonerForm']['regionUser'],
+      'summonerId': form['summonerId'],
+      'profileIconId': form['profileIconId']
     };
-    return this.http.post(this.registerUrl+'api/registro/steps', body, {headers, observe: 'response'}).pipe(map((data: any) => {
+    return this.http.post(this.registerUrl+'registro/steps', body, {headers, observe: 'response'}).pipe(map((data: any) => {
       return data;
     }));
+  }
+
+  saveAccount(summonerName, region, profileIconId){
+    const body = {
+      summonerName: summonerName,
+      region: region,
+      profileIconId: profileIconId,
+      token: localStorage.getItem('token')
+    };
+    return this.http.post(this.registerUrl+'user/save-account', body, {observe: 'response'}).pipe(map((data:any)=> {
+      return data;
+    }))
+  }
+
+  dropAccount(summonerName){
+    const body = {
+      summonerName: summonerName,
+      token: localStorage.getItem('token')
+    };
+    return this.http.post(this.registerUrl+'user/drop-account', body, {observe: 'response'}).pipe(map((data:any)=> {
+      return data;
+    }))
   }
 }

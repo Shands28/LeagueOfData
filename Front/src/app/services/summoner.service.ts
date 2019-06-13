@@ -36,4 +36,10 @@ export class SummonerService {
       return data;
     })));
   }
+
+  refreshSummonerData(summonerName, region){
+    return this.http.get(this.summonerUrl + 'update/' + region + '/' + summonerName, {observe: 'response'}).pipe(map( (data) => {
+      return data;
+    }))
+  }
 }

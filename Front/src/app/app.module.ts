@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 // Flex Layout
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 // Material
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatCardModule,
@@ -16,24 +16,26 @@ import {
   MatInputModule, MatListModule,
   MatMenuModule, MatOptionModule, MatProgressSpinnerModule, MatSelectModule,
   MatToolbarModule, MatTooltipModule,
-  MatDialogModule, MatDividerModule, MatStepperModule, MatTableModule, MatExpansionModule
+  MatDialogModule, MatDividerModule, MatStepperModule, MatTableModule, MatExpansionModule, MatSnackBarModule,
+  MatSortModule
 } from '@angular/material';
 
 // Components
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { HomeComponent } from './components/public/home/home.component';
-import { SummonerComponent } from './components/public/summoner/summoner.component';
-import { HttpClientModule } from '@angular/common/http';
-import { LivestreamsComponent } from './components/public/livestreams/livestreams.component';
-import { SignupModalComponent } from './components/shared/navbar/signup-modal/signup-modal.component';
-import { LoginModalComponent } from './components/shared/navbar/login-modal/login-modal.component';
-import { UserProfileComponent } from './components/private/user-profile/user-profile.component';
-import { StatisticsComponent } from './components/public/statistics/statistics.component';
-import { NbspPipe } from './pipes/nbsp.pipe';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {NavbarComponent} from './components/shared/navbar/navbar.component';
+import {HomeComponent} from './components/public/home/home.component';
+import {SummonerComponent} from './components/public/summoner/summoner.component';
+import {HttpClientModule} from '@angular/common/http';
+import {LivestreamsComponent} from './components/public/livestreams/livestreams.component';
+import {SignupModalComponent} from './components/shared/navbar/signup-modal/signup-modal.component';
+import {LoginModalComponent} from './components/shared/navbar/login-modal/login-modal.component';
+import {UserProfileComponent} from './components/private/user-profile/user-profile.component';
+import {StatisticsComponent} from './components/public/statistics/statistics.component';
+import {NbspPipe} from './pipes/nbsp.pipe';
 import {AuthService} from "./services/auth.service";
-import { ErrorComponent } from './components/public/error/error.component';
+import {ErrorComponent} from './components/public/error/error.component';
+import {NewsComponent} from './components/public/news/news.component';
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { ErrorComponent } from './components/public/error/error.component';
     UserProfileComponent,
     StatisticsComponent,
     NbspPipe,
-    ErrorComponent
+    ErrorComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,9 @@ import { ErrorComponent } from './components/public/error/error.component';
     MatDividerModule,
     MatStepperModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule,
+    MatSortModule
   ],
   providers: [
     AuthService
@@ -84,4 +89,5 @@ import { ErrorComponent } from './components/public/error/error.component';
     LoginModalComponent
   ]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SummonerService} from '../../../services/summoner.service';
 import {Summoner} from '../../../interfaces/summoner';
+import {AuthService} from "../../../services/auth.service";
+import {UserService} from "../../../services/user.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-summoner',
@@ -26,11 +29,15 @@ export class SummonerComponent implements OnInit {
   summonerSpells;
   queues;
 
+  accountSaved: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
-    private _summonerService: SummonerService
+    private _summonerService: SummonerService,
+    private _authService: AuthService,
+    private _userService: UserService,
+    private snakBar: MatSnackBar
   ) {
     this.loading = true;
     this.summonerName = activatedRoute.snapshot.params['name'];
@@ -38,6 +45,7 @@ export class SummonerComponent implements OnInit {
     this._summonerService.getSummonerInfo(this.summonerName, this.region).subscribe(result => {
         if (result['status'] === 200) {
           this.summonerName = result['body'].summonerName;
+          console.log(result['body'].profileIconId);
           this.summonerStats = result['body'];
           this.matchesInfo = result['body'].foundMatches;
           this.getParticipantId();
@@ -57,6 +65,20 @@ export class SummonerComponent implements OnInit {
     this._summonerService.getQueues().subscribe(res => {
       this.queues = res;
     });
+    if (localStorage.getItem('token')) {
+      this._authService.getUserName().subscribe(res => {
+        if (res['status'] === 200) {
+          if (Date.now() > res['body']['exp']) {
+            this._authService.isLoggedIn = true;
+            for (let savedAccount of res['body']['savedAccounts']) {
+              if (savedAccount['summonerName'] === this.summonerName) {
+                this.accountSaved = true;
+              }
+            }
+          }
+        }
+      })
+    }
   }
 
   ngOnInit() {
@@ -150,5 +172,60 @@ export class SummonerComponent implements OnInit {
         return queue['name'];
       }
     }
+  }
+
+  saveAccount() {
+    if (localStorage.getItem('token')) {
+      if (this.accountSaved) {
+        this._userService.dropAccount(this.summonerName).subscribe(res => {
+          if (res['status'] === 200) {
+            localStorage.setItem('token', res['body']['token']);
+          } else {
+            console.log(res);
+          }
+          this.accountSaved = false;
+        })
+      } else {
+        this._userService.saveAccount(this.summonerName, this.region, this.summonerStats.profileIconId).subscribe(res => {
+          if (res['status'] === 200) {
+            localStorage.setItem('token', res['body']['token']);
+          } else {
+            console.log(res);
+          }
+          this.accountSaved = true;
+        })
+      }
+    } else {
+      this.snakBar.open('Log in or Sign up to save your favorite accounts', 'Ok', {
+        duration: 2000,
+        horizontalPosition: "center",
+        verticalPosition: "bottom",
+        panelClass: ['my-snack-bar']
+      })
+    }
+  }
+
+  refreshData(refresh){
+    refresh['disabled']=true;
+    this._summonerService.refreshSummonerData(this.summonerName, this.region).subscribe(
+      res => {
+      if(res['status']===200){
+        this.snakBar.open('Summoner added to Queue', 'Ok', {
+          duration: 2000,
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+          panelClass: ['my-snack-bar']
+        });
+        refresh['disabled']=false;
+      }
+    }, err => {
+        this.snakBar.open('Error', 'Ok', {
+          duration: 2000,
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+          panelClass: ['my-snack-bar']
+        });
+        refresh['disabled']=false;
+    })
   }
 }

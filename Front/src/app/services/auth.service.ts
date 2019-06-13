@@ -12,29 +12,31 @@ export class AuthService {
   logUrl: string = environment.back_route;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) {
   }
 
   login(form: any) {
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
     const body = {
-      'username': form['summonerNameUser'],
-      'password': form['regionUser']
+      'email': form['userName'],
+      'password': form['userPass'],
+      'getHash': true
     };
-    return this.http.post(this.logUrl + 'login', body, {headers, observe: 'response'}).pipe(map((data: any) => {
+    return this.http.post(this.logUrl + 'login', body, {observe: 'response'}).pipe(map((data: any) => {
       return data;
     }))
   }
 
   logout(): void {
-    this.isLoggedIn = false;
+    localStorage.removeItem('token');
   }
 
   getUserName() {
-    return this.http.get(this.logUrl + 'user', {
-      observe: 'response', params: new HttpParams().append('token', localStorage.getItem('t'))
+    let headers = new HttpHeaders();
+    headers.append('Content-Length', '999');
+    return this.http.get(this.logUrl + 'user/' + localStorage.getItem('token'), {
+      headers,
+      observe: 'response'
     }).pipe(map((data: any) => {
       return data;
     }))
