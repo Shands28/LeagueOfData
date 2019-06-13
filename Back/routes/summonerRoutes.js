@@ -8,6 +8,7 @@ var api = express.Router();
 
     //MODELADO DE DATOS
 api.get('/register/:summonerName/:region', SummonerController.register);
+api.get('/update/:region/:summonerName', SummonerController.updateSummoner);
     //ESTADISTICAS
 
 module.exports = api;

@@ -1,5 +1,6 @@
 'use stric'
 var Summoner = require('../models/summonerModel');
+var Queue = require('../models/queueModel');
 var Match = require('../models/matchModel.js');
 var apiKey = require('../api_calls/data_api');
 var request = require('request');
@@ -16,7 +17,10 @@ function register(req, res) {
             if (summonerObject) {
                 console.log('SUMMONER ENCONTRADO EN BBDD');
                 //Comprobar si el sum tiene matches asociados a su id
-                Match.find({'participantIdentities.player.summonerId': summonerObject.id}, (err, docs) => {
+                Match.find({
+                    'participantIdentities.player.summonerName': summonerObject.summonerName,
+                    platformId: {$regex: region, $options: 'i'}
+                }, (err, docs) => {
                     if (err) {
                         throw error
                     }
@@ -55,8 +59,11 @@ function register(req, res) {
                             }
                             if (response.statusCode === 200) {
                                 mySummoner.ranks = JSON.parse(body);
-                                Match.find({'participantIdentities.player.summonerId': mySummoner.id}, (err, docs) => {
-                                    if(err){
+                                Match.find({
+                                    'participantIdentities.player.summonerName': mySummoner.summonerName,
+                                    platformId: {$regex: region, $options: 'i'}
+                                }, (err, docs) => {
+                                    if (err) {
                                         throw err
                                     }
                                     mySummoner.foundMatches = docs;
@@ -96,8 +103,44 @@ function register(req, res) {
 
 
 function updateSummoner(req, res) {
-    var summonerId = req.params.summoner.id;
+    var summoner = Queue();
+    var summonerName = req.params.summonerName;
+    var region = req.params.region;
 
+    Queue.find({summonerName: summonerName, region: region}, (err, item) => {
+        if (err) {
+            console.log('Low Item not found');
+            throw err;
+        } else if (item.length > 0) {
+            console.log(item);
+            summoner = item.pop();
+            if (summoner.priority === 3) {
+                res.status(200).send({message: 'Summoner added to Queue'});
+            } else {
+                summoner.priority++;
+                summoner.save()
+                    .then(summoner => {
+                        console.log('ITEM SAVED: El summoner buscado tenia priority = 2, ahora 3');
+                        res.status(200).send({message: 'Summoner added to Queue'});
+                    })
+                    .catch(err => {
+                        res.status(400).send('Error');
+                    });
+            }
+        } else {
+            summoner.summonerName = summonerName;
+            summoner.region = region;
+            summoner.priority = 1;
+            summoner.save()
+                .then(summoner => {
+                    console.log('ITEM SAVED: El summoner buscado tenia priority = 2, ahora 3');
+                    res.status(200).send({message: 'Summoner added to Queue'});
+                })
+                .catch(err => {
+                    res.status(400).send('Error');
+                });
+        }
+    });
 }
 
 

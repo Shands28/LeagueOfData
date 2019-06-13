@@ -121,7 +121,6 @@ function registerUser(req, res) {
             var summonerId = req.body.summonerId;
             var profileIconId = req.body.profileIconId;
             var verificationCode;
-            console.log(req.body);
             //LLAMAR API LOL PARA OBTENER ESTA VARIABLE
             var verificationUrl = `https://${region}.api.riotgames.com/lol/platform/v4/third-party-code/by-summoner/${summonerId}?api_key=${apiKey}`;
             request(verificationUrl, (error, response, body) => {
