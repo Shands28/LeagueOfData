@@ -204,4 +204,28 @@ export class SummonerComponent implements OnInit {
       })
     }
   }
+
+  refreshData(refresh){
+    refresh['disabled']=true;
+    this._summonerService.refreshSummonerData(this.summonerName, this.region).subscribe(
+      res => {
+      if(res['status']===200){
+        this.snakBar.open('Summoner added to Queue', 'Ok', {
+          duration: 2000,
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+          panelClass: ['my-snack-bar']
+        });
+        refresh['disabled']=false;
+      }
+    }, err => {
+        this.snakBar.open('Error', 'Ok', {
+          duration: 2000,
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+          panelClass: ['my-snack-bar']
+        });
+        refresh['disabled']=false;
+    })
+  }
 }

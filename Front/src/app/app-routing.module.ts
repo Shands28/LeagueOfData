@@ -6,6 +6,7 @@ import {LivestreamsComponent} from './components/public/livestreams/livestreams.
 import {UserProfileComponent} from './components/private/user-profile/user-profile.component';
 import {StatisticsComponent} from './components/public/statistics/statistics.component';
 import {ErrorComponent} from "./components/public/error/error.component";
+import {NewsComponent} from "./components/public/news/news.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'profile', component: UserProfileComponent},
   {path: 'statistics', component: StatisticsComponent},
   {path: 'error', component: ErrorComponent},
+  {path: 'news/:id', component: NewsComponent},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 

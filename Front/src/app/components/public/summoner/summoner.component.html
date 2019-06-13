@@ -7,9 +7,12 @@
     <h4>Region: {{summonerStats.region == 'euw1' ? 'EUW' : 'NA'}}</h4>
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".7em">
       <button mat-icon-button (click)="saveAccount()">
-        <mat-icon>{{accountSaved ? 'star' : 'star_border'}}</mat-icon>
+        <mat-icon [matTooltip]="accountSaved ? 'Delete from favourites' : 'Save to favourites'"
+                  matTooltipPosition="above">
+          {{accountSaved ? 'star' : 'star_border'}}
+        </mat-icon>
       </button>
-      <button mat-raised-button color="warn" fxFill>Refresh data</button>
+      <button mat-raised-button color="warn" fxFill (click)="refreshData(refresh)" #refresh>Refresh data</button>
     </div>
   </div>
   <div fxLayout="row" style="width: 80%;">

@@ -1,0 +1,15 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="news-component-wrapper" *ngIf="!loading">
+  <div class="news-wrapper" fxLayout="column" fxLayoutAlign="start start">
+    <div>
+      <h1 fxFlexAlign="center">{{news.title}}</h1> <img src="{{news.img}}" alt="">
+    </div>
+    <div></div>
+    <div>
+      <div [innerHTML]="news.body" class="news-body"></div>
+      <span>{{news.publicationDate | date:'dd, MM-yy'}}</span>
+    </div>
+  </div>
+</div>
+<div fxFill *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="loading-wrapper">
+  <span><mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner></span>
+</div>

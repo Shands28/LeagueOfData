@@ -1,0 +1,34 @@
+.news-component-wrapper {
+  width: 100%;
+  margin-top: 5em;
+}
+
+.news-wrapper {
+  width: 65%;
+}
+
+.news-body {
+  text-align: justify;
+}
+
+.news-wrapper img {
+  border-radius: 25px;
+  box-shadow: 3px 3px 10px 0 rgba(0,0,20,.75);
+  margin: 1em;
+}
+
+.loading-wrapper {
+  margin-top: 10em;
+}
+
+.news-body::ng-deep div {
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid black;
+  box-shadow: 3px 3px 10px 0 rgba(0,0,20,.75);
+  padding: 0 20px;
+}
+
+.news-body::ng-deep div span{
+  font-weight: bold;
+}

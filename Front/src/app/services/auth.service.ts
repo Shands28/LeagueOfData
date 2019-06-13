@@ -34,7 +34,10 @@ export class AuthService {
   getUserName() {
     let headers = new HttpHeaders();
     headers.append('Content-Length', '999');
-    return this.http.get(this.logUrl + 'user/' + localStorage.getItem('token'), {headers, observe: 'response'}).pipe(map((data: any) => {
+    return this.http.get(this.logUrl + 'user/' + localStorage.getItem('token'), {
+      headers,
+      observe: 'response'
+    }).pipe(map((data: any) => {
       return data;
     }))
   }
